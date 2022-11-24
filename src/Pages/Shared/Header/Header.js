@@ -15,7 +15,7 @@ const Header = () => {
   }
 
   return (
-    <div className='bg-blue-200/50 backdrop-blur sticky top-0 z-10 border-b-2 border-blue-100'>
+    <div className='bg-gray-50/50 backdrop-blur sticky top-0 z-10 border-b-2 border-blue-100'>
       <div className="navbar w-full md:w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -40,6 +40,7 @@ const Header = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
             <li><Link to='/'>Home</Link></li>
+            {user?.uid && <li><Link to='/dashboard'>Dashboard</Link></li>}
             <li tabIndex={0}><Link to='/shop'>Shop</Link></li>
             <li><Link>Blog</Link></li>
             <li>

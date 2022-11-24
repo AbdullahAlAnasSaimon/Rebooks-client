@@ -1,7 +1,10 @@
+import DashboardLayout from "../../Layout/DashboardLayout/DashboardLayout";
+import AllBuyers from "../../Pages/Admin/AllBuyers/AllBuyers";
+import AllSellers from "../../Pages/Admin/AllSellers/AllSellers";
 import LogIn from "../../Pages/LogIn/LogIn";
 import Shop from "../../Pages/Shop/Shop";
 import SignUp from "../../Pages/SignUp/SignUp";
-import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../../Layout/Main/Main");
@@ -27,6 +30,20 @@ export const router = createBrowserRouter([
       {
         path: '/shop',
         element: <PrivateRoute><Shop></Shop></PrivateRoute>
+      }
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+      {
+        path: '/dashboard',
+        element: <AllSellers></AllSellers>
+      },
+      {
+        path: '/all-buyers',
+        element: <AllBuyers></AllBuyers>
       }
     ]
   }

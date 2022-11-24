@@ -7,41 +7,41 @@ import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
 
 const SignUp = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
-  const {setUser, createUser, updateUser, googleSignIn, logOut} = useContext(AuthContext);
+  const { createUser, updateUser, googleSignIn, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
 
   const handleSignUp = data => {
     console.log(data);
     createUser(data.email, data.password)
-    .then(result =>{
-      const user = result.user;
-      console.log(user);
-      const userProfile = {
-        displayName: data?.name
-      }
-      updateUserProfile(userProfile);
-      logOut()
-      toast.success('Account Created Successfully');
-      navigate('/login')
-    })
-    .catch(err => toast.error(err.message));
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+        const userProfile = {
+          displayName: data?.name
+        }
+        updateUserProfile(userProfile);
+        logOut();
+        toast.success('Account Created Successfully');
+        navigate('/login');
+      })
+      .catch(err => toast.error(err.message));
   }
 
-  const updateUserProfile = (profile) =>{
+  const updateUserProfile = (profile) => {
     updateUser(profile)
-    .then(() => {})
-    .catch(err => toast.error(err.message))
+      .then(() => { })
+      .catch(err => toast.error(err.message))
   }
 
-  const handleGoogleSignUp = () =>{
+  const handleGoogleSignUp = () => {
     googleSignIn(googleProvider)
-    .then(result =>{
-      const user = result.user;
-      console.log(user);
-      toast.success('Log In Successfull');
-    })
-    .catch(err => toast.error(err.message));
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+        toast.success('Log In Successfull');
+      })
+      .catch(err => toast.error(err.message));
   }
 
   return (
