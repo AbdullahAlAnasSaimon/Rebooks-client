@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
-import logo from '../../../images/logo/logo.png'
+import logo from '../../../images/logo/logo.png';
+import {FaUserCircle} from 'react-icons/fa';
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -14,7 +15,7 @@ const Header = () => {
   }
 
   return (
-    <div className='bg-blue-500/50 backdrop-blur sticky top-0 z-10 border-b-2 border-blue-100'>
+    <div className='bg-blue-200/50 backdrop-blur sticky top-0 z-10 border-b-2 border-blue-100'>
       <div className="navbar w-full md:w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -39,7 +40,7 @@ const Header = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
             <li><Link to='/'>Home</Link></li>
-            <li tabIndex={0}><Link>Parent</Link></li>
+            <li tabIndex={0}><Link>Shop</Link></li>
             <li><Link>Blog</Link></li>
             <li>
               <label className="swap swap-rotate rounded-full">
@@ -59,7 +60,7 @@ const Header = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src={user?.photoURL} alt=''/>
+                {user?.photoURL ? <img src={user?.photoURL} alt=''/> : <FaUserCircle className='text-[40px] text-gray-700'/>}
               </div>
             </label>
             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">

@@ -2,12 +2,13 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
 
 const SignUp = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
-  const {setUser, createUser, updateUser, googleSignIn} = useContext(AuthContext);
+  const {setUser, createUser, updateUser, googleSignIn, logOut} = useContext(AuthContext);
+  const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
 
   const handleSignUp = data => {
@@ -20,16 +21,16 @@ const SignUp = () => {
         displayName: data?.name
       }
       updateUserProfile(userProfile);
+      logOut()
+      toast.success('Account Created Successfully');
+      navigate('/login')
     })
     .catch(err => toast.error(err.message));
   }
 
   const updateUserProfile = (profile) =>{
     updateUser(profile)
-    .then((result) => {
-      const user = result.user;
-      setUser(user);
-    })
+    .then(() => {})
     .catch(err => toast.error(err.message))
   }
 
@@ -37,7 +38,8 @@ const SignUp = () => {
     googleSignIn(googleProvider)
     .then(result =>{
       const user = result.user;
-      console.log(user)
+      console.log(user);
+      toast.success('Log In Successfull');
     })
     .catch(err => toast.error(err.message));
   }
