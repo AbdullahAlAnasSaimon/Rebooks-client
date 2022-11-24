@@ -1,3 +1,5 @@
+import LogIn from "../../Pages/LogIn/LogIn";
+
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../../Layout/Main/Main");
 const { default: Home } = require("../../Pages/Home/Home/Home");
@@ -10,6 +12,10 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>
+      },
+      {
+        path: '/login',
+        element: <LogIn></LogIn>
       }
     ]
   }
