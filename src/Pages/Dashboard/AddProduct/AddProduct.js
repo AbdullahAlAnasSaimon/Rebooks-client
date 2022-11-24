@@ -1,70 +1,19 @@
-import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
 
-const SignUp = () => {
+const AddProduct = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
-  const { createUser, updateUser, googleSignIn, logOut } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const googleProvider = new GoogleAuthProvider();
 
-  const handleSignUp = data => {
-    console.log(data);
-    createUser(data.email, data.password)
-      .then(result => {
-        const user = result.user;
-        console.log(user);
+  const handleAddProduct = () =>{
 
-        logOut();
-        toast.success('Account Created Successfully');
-        const userProfile = {
-          displayName: data?.name
-        }
-
-        updateUser(userProfile)
-        .then(() => { 
-          saveUserToDb(data?.name, data?.email, data?.role);
-        })
-        .catch(err => toast.error(err.message))
-        navigate('/login');
-      })
-      .catch(err => toast.error(err.message));
-  }
-
-  const saveUserToDb = (name, email, role) =>{
-    const userInfo = {name, email, role};
-    console.log(userInfo);
-    fetch('http://localhost:5000/users', {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json'
-          },
-          body: JSON.stringify(userInfo)
-        })
-        .then(res => res.json())
-        .then(data =>{
-          console.log(data);
-        })
-  }
-
-  const handleGoogleSignUp = () => {
-    googleSignIn(googleProvider)
-      .then(result => {
-        const user = result.user;
-        console.log(user);
-        toast.success('Log In Successfull');
-      })
-      .catch(err => toast.error(err.message));
   }
 
   return (
-    <div className=' flex justify-center items-center my-10'>
-      <div className="w-96 p-7 border-2 border-blue-300 rounded-lg">
-        <h2 className='text-3xl font-bold'>Sign Up</h2>
-        <form onSubmit={handleSubmit(handleSignUp)}>
+    <div className=''>
+        <h2 className='text-3xl font-bold my-5'>Add Product</h2>
+      <div className='m-5'>
+        <form onSubmit={handleSubmit(handleAddProduct)}>
 
           <div className="form-control w-full max-w-xs">
             <label className="label"><span className="label-text">Name</span> </label>
@@ -110,14 +59,11 @@ const SignUp = () => {
             {/* {errors.file && <p className="text-red-500"><small>*{errors?.file?.message}</small></p>} */}
           </div>
 
-          <input className='btn btn-primary w-full my-5' type="submit" value='Sign Up' />
+          <input className='btn btn-primary w-full my-5 max-w-xs' type="submit" value='Add A Product' />
         </form>
-        <p className='text-center'>Already Have an Account? <Link to='/login' className='text-blue-500 underline'>Log In</Link></p>
-        <div className="divider">OR</div>
-        <button onClick={handleGoogleSignUp} className='w-full btn btn-outline'>Continue With Google</button>
       </div>
     </div>
   );
 };
 
-export default SignUp;
+export default AddProduct;
