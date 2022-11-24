@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
 import logo from '../../../images/logo/logo.png'
 
 const Header = () => {
+  const {user} = useContext(AuthContext);
   return (
     <div className='bg-blue-500/50 backdrop-blur sticky top-0 z-10 border-b-2 border-blue-100'>
       <div className="navbar w-full md:w-11/12 mx-auto">
@@ -29,6 +31,7 @@ const Header = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
             <li><Link to='/'>Home</Link></li>
+            <li><Link>{user.name}</Link></li>
             <li tabIndex={0}><Link>Parent</Link></li>
             <li><Link>Blog</Link></li>
             <li>
