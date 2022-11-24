@@ -1,6 +1,7 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
 
@@ -15,7 +16,7 @@ const LogIn = () => {
       const user = result.user;
       console.log(user);
     })
-    .catch(err => console.log(err));
+    .catch(err => toast.error(err.message));
   }
 
   const handleGoogleLogIn = () =>{
@@ -24,7 +25,7 @@ const LogIn = () => {
       const user = result.user;
       console.log(user)
     })
-    .catch(err => console.log(err))
+    .catch(err => toast.error(err.message));
   }
 
   return (
