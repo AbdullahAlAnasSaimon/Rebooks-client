@@ -10,10 +10,11 @@ const SignUp = () => {
   }
 
   return (
-    <div className='h-[600px] flex justify-center items-center my-10'>
+    <div className=' flex justify-center items-center my-10'>
       <div className="w-96 p-7 border-2 border-blue-300 rounded-lg">
         <h2 className='text-3xl font-bold'>Sign Up</h2>
         <form onSubmit={handleSubmit(handleSignUp)}>
+
           <div className="form-control w-full max-w-xs">
             <label className="label"><span className="label-text">Name</span> </label>
             <input {...register("name", {
@@ -21,6 +22,8 @@ const SignUp = () => {
             })} type="name" placeholder="Your Name" className="input input-bordered w-full max-w-xs" />
             {errors.name && <p className="text-red-500"><small>*{errors?.name?.message}</small></p>}
           </div>
+
+
           <div className="form-control w-full max-w-xs">
             <label className="label"><span className="label-text">Email</span> </label>
             <input {...register("email", {
@@ -28,16 +31,35 @@ const SignUp = () => {
             })} type="email" placeholder="Your Email" className="input input-bordered w-full max-w-xs" />
             {errors.email && <p className="text-red-500"><small>*{errors?.email?.message}</small></p>}
           </div>
+
           <div className="form-control w-full max-w-xs">
             <label className="label"><span className="label-text">Password</span></label>
             <input {...register("password", {
               required: 'Password is required',
-              minLength: { value: 6, message: 'Password must be 6 character or longer' }
-            })} type="password" placeholder="Your Email" className="input input-bordered w-full max-w-xs" />
+              minLength: { value: 6, message: 'Password must be 6 character or longer' },
+              pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'Password should contain 1 Uppercase, 1 number, 1 special character' }
+            })} type="password" placeholder="Password" className="input input-bordered w-full max-w-xs" />
             {errors.password && <p className="text-red-500"><small>*{errors?.password?.message}</small></p>}
-            <label className="label"><span className="label-text">Forget Password</span></label>
           </div>
-          <input className='btn btn-primary w-full my-3' type="submit" value='Sign Up' />
+
+          <div className="form-control w-full max-w-xs">
+            <label className="label"><span className="label-text">Select Account Type</span> </label>
+            <select {...register("role", {
+              required: true
+            })} className="select select-bordered w-full max-w-xs">
+              <option>Buyer</option>
+              <option>Seller</option>
+            </select>
+            {errors.role && <p className="text-red-500"><small>*{errors?.role?.message}</small></p>}
+          </div>
+
+          <div className="form-control w-full max-w-xs">
+            <label className="label"><span className="label-text">Photo</span></label>
+            <input {...register("file", { required: "Photo is required" })} type="file" className="file-input file-input-bordered w-full max-w-xs" />
+            {errors.file && <p className="text-red-500"><small>*{errors?.file?.message}</small></p>}
+          </div>
+
+          <input className='btn btn-primary w-full my-5' type="submit" value='Sign Up' />
         </form>
         <p>Already Have an Account? <Link to='/login' className='text-blue-500 underline'>Log In</Link></p>
         <div className="divider">OR</div>
