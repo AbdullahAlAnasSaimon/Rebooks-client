@@ -14,7 +14,7 @@ const LogIn = () => {
       <div className="w-96 p-7 border-2 border-blue-300 rounded-lg">
         <h2 className='text-3xl font-bold'>Log In</h2>
         <form onSubmit={handleSubmit(handleLogIn)}>
-          <div className="form-control w-full max-w-xs">
+          <div className="form-control w-full">
             <label className="label"><span className="label-text">Email</span> </label>
             <input {...register("email", {
               required: 'Email Address is required'
@@ -32,7 +32,7 @@ const LogIn = () => {
           </div>
           <input className='btn btn-primary w-full my-3' type="submit" value='Log In' />
         </form>
-        <p>New to eBooks? <Link to='/signup' className='text-blue-500 underline'>Create An Account</Link></p>
+        <p className='text-center'>New to ReBooks? <Link to='/signup' className='text-blue-500 underline'>Create An Account</Link></p>
         <div className="divider">OR</div>
         <button className='w-full btn btn-outline'>Continue With Google</button>
       </div>
