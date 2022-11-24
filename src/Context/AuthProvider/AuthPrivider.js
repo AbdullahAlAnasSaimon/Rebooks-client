@@ -3,8 +3,8 @@ import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithE
 import app from '../../Firebase/firebase.config';
 
 
-export const AuthContext = createContext();
 const auth = getAuth(app);
+export const AuthContext = createContext();
 
 
 const AuthPrivider = ({children}) => {
@@ -32,14 +32,13 @@ const AuthPrivider = ({children}) => {
   }
 
   const logOut = () =>{
-    setLoading(true);
     return signOut(auth);
   }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
-      setLoading(false);
       setUser(currentUser);
+      setLoading(false);
     })
 
     return () => unsubscribe();
@@ -48,6 +47,7 @@ const AuthPrivider = ({children}) => {
   const authInfo = {
     user,
     setUser,
+    loading,
     googleSignIn,
     createUser,
     updateUser,
