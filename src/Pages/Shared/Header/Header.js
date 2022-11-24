@@ -31,7 +31,7 @@ const Header = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
             <li><Link to='/'>Home</Link></li>
-            <li><Link>{user.name}</Link></li>
+            {/* <li><Link>{user?.name}</Link></li> */}
             <li tabIndex={0}><Link>Parent</Link></li>
             <li><Link>Blog</Link></li>
             <li>

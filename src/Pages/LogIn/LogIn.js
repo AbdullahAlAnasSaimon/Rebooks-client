@@ -1,12 +1,30 @@
-import React from 'react';
+import { GoogleAuthProvider } from 'firebase/auth';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
 
 const LogIn = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
+  const {userLogIn, googleSignIn} = useContext(AuthContext);
+  const googleProvider = new GoogleAuthProvider();
 
   const handleLogIn = data => {
-    console.log(data);
+    userLogIn(data.email, data.password)
+    .then(result => {
+      const user = result.user;
+      console.log(user);
+    })
+    .catch(err => console.log(err));
+  }
+
+  const handleGoogleLogIn = () =>{
+    googleSignIn(googleProvider)
+    .then(result =>{
+      const user = result.user;
+      console.log(user)
+    })
+    .catch(err => console.log(err))
   }
 
   return (
@@ -26,7 +44,7 @@ const LogIn = () => {
             <input {...register("password", {
               required: 'Password is required',
               minLength: {value: 6, message: 'Password must be 6 character or longer'}
-              })} type="password" placeholder="Your Email" className="input input-bordered w-full max-w-xs" />
+              })} type="password" placeholder="Password" className="input input-bordered w-full max-w-xs" />
             {errors.password && <p className="text-red-500"><small>*{errors?.password?.message}</small></p>}
             <label className="label"><span className="label-text">Forget Password</span></label>
           </div>
@@ -34,7 +52,7 @@ const LogIn = () => {
         </form>
         <p className='text-center'>New to ReBooks? <Link to='/signup' className='text-blue-500 underline'>Create An Account</Link></p>
         <div className="divider">OR</div>
-        <button className='w-full btn btn-outline'>Continue With Google</button>
+        <button onClick={handleGoogleLogIn} className='w-full btn btn-outline'>Continue With Google</button>
       </div>
     </div>
   );

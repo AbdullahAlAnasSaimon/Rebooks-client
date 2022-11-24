@@ -1,12 +1,31 @@
-import React from 'react';
+import { GoogleAuthProvider } from 'firebase/auth';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
 
 const SignUp = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
+  const {createUser, googleSignIn} = useContext(AuthContext);
+  const googleProvider = new GoogleAuthProvider();
 
   const handleSignUp = data => {
     console.log(data);
+    createUser(data.email, data.password)
+    .then(result =>{
+      const user = result.user;
+      console.log(user);
+    })
+    .catch(err => console.log(err));
+  }
+
+  const handleGoogleSignUp = () =>{
+    googleSignIn(googleProvider)
+    .then(result =>{
+      const user = result.user;
+      console.log(user)
+    })
+    .catch(err => console.log(err))
   }
 
   return (
@@ -55,15 +74,15 @@ const SignUp = () => {
 
           <div className="form-control w-full max-w-xs">
             <label className="label"><span className="label-text">Photo</span></label>
-            <input {...register("file", { required: "Photo is required" })} type="file" className="file-input file-input-bordered w-full max-w-xs" />
-            {errors.file && <p className="text-red-500"><small>*{errors?.file?.message}</small></p>}
+            <input {...register("file")} type="file" className="file-input file-input-bordered w-full max-w-xs" />
+            {/* {errors.file && <p className="text-red-500"><small>*{errors?.file?.message}</small></p>} */}
           </div>
 
           <input className='btn btn-primary w-full my-5' type="submit" value='Sign Up' />
         </form>
         <p className='text-center'>Already Have an Account? <Link to='/login' className='text-blue-500 underline'>Log In</Link></p>
         <div className="divider">OR</div>
-        <button className='w-full btn btn-outline'>Continue With Google</button>
+        <button onClick={handleGoogleSignUp} className='w-full btn btn-outline'>Continue With Google</button>
       </div>
     </div>
   );
