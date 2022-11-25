@@ -18,9 +18,7 @@ const SignUp = () => {
     createUser(data.email, data.password)
       .then(result => {
         const user = result.user;
-        console.log(user);
-
-        logOut();
+        // logOut();
         toast.success('Account Created Successfully');
         const userProfile = {
           displayName: data?.name
@@ -31,7 +29,6 @@ const SignUp = () => {
           saveUserToDb(data?.name, data?.email, data?.role);
         })
         .catch(err => toast.error(err.message))
-        navigate('/login');
       })
       .catch(err => toast.error(err.message));
   }
@@ -48,7 +45,7 @@ const SignUp = () => {
         })
         .then(res => res.json())
         .then(data =>{
-          console.log(data);
+          getUserToken(email);
         })
   }
 
@@ -61,6 +58,18 @@ const SignUp = () => {
         toast.success('Log In Successfull');
       })
       .catch(err => toast.error(err.message));
+  }
+
+  // jwt step 2
+  const getUserToken = email =>{
+    fetch(`http://localhost:5000/jwt?email=${email}`)
+    .then(res => res.json())
+    .then(data => {
+      if(data.accessToken){
+        localStorage.setItem('accessToken', data.accessToken);
+        navigate('/login');
+      }
+    })
   }
 
   return (

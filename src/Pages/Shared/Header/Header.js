@@ -82,7 +82,7 @@ const Header = () => {
                     <span className="badge">New</span>
                   </Link>
                 </li>
-                {user?.uid && <li><Link to='/dashboard'>Dashboard</Link></li>}
+                {user?.uid && <li className='md:hidden'><Link to='/dashboard'>Dashboard</Link></li>}
                 <li><button onClick={handleLogOut}>Log Out</button></li>
               </ul>
             </div>
