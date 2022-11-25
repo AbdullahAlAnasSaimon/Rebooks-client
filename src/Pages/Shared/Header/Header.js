@@ -15,7 +15,7 @@ const Header = () => {
   }
 
   return (
-    <div className='bg-gray-50/50 backdrop-blur sticky top-0 z-10 border-b-2 border-blue-100'>
+    <div className='bg-gray-50/50 backdrop-blur sticky top-0 border-b-2 border-blue-100 z-[9999]'>
       <div className="navbar w-full md:w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -56,7 +56,7 @@ const Header = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <label htmlFor="dashboard-drawer" tabIndex={0} className="btn btn-ghost btn-circle lg:hidden">
+          <label htmlFor="category-drawer" tabIndex={0} className="btn btn-ghost btn-circle lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-16 6h16" /></svg>
           </label>
           {user?.uid ?

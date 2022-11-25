@@ -7,17 +7,17 @@ import Loading from '../../Pages/Shared/Loading/Loading';
 
 const ShopLayout = () => {
 
-  const {data: categories, isLoading} = useQuery({
+  const { data: categories, isLoading } = useQuery({
     queryKey: ['categories'],
-    queryFn: async () =>{
+    queryFn: async () => {
       const res = await fetch('http://localhost:5000/category');
       const data = await res.json();
       return data;
     }
   })
 
-  if(isLoading){
-    return <Loading/>
+  if (isLoading) {
+    return <Loading />
   }
   console.log(categories);
 
@@ -26,21 +26,21 @@ const ShopLayout = () => {
   return (
     <div>
       <Header></Header>
-      <div className="drawer drawer-mobile">
+      <div className="drawer drawer-mobile h-auto relative">
         <input id="category-drawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content z-0">
           {/* <!-- Page content here --> */}
           <Outlet></Outlet>
-          <label htmlFor="category-drawer" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+          {/* <label htmlFor="category-drawer" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
 
         </div>
-        <div className="drawer-side z-0">
+        <div className="drawer-side z-1 md:sticky md:top-[0rem] md:max-h-[100vh - 1rem] md:overflow-y-scroll md:inline-block">
           <label htmlFor="category-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
             {/* <!-- Sidebar content here --> */}
-            <li><NavLink>All</NavLink></li>
+            <li><Link to={`/shop`}>All Books</Link></li>
             {
-              categories.map(category => <li key={category._id}><NavLink to={`/category/${category?._id}`}>{category?.category_name}</NavLink></li>)
+              categories.map(category => <li key={category._id}><Link to={`/shop/category/${category?.category_name}`}>{category?.category_name}</Link></li>)
             }
           </ul>
 
