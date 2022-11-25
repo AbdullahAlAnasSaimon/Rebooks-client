@@ -65,7 +65,7 @@ const Header = () => {
           <label htmlFor="category-drawer" tabIndex={0} className={`btn btn-ghost btn-circle lg:hidden ${window.location.pathname === '/shop' ? 'visible' : 'hidden'}`}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-16 6h16" /></svg>
           </label>
-          <label htmlFor="dashboard-drawer" tabIndex={0} className={`btn btn-ghost btn-circle lg:hidden ${window.location.pathname === '/dashboard' ? 'visible' : 'hidden'}`}>
+          <label htmlFor="dashboard-drawer" tabIndex={0} className={`btn btn-ghost btn-circle lg:hidden ${window.location.pathname === '/dashboard' || '/dashboard/my-products' || '/dashboard/add-a-product' || '/dashboard/my-orders' || '/dashboard/reported-items' || '/dashboard/all-buyers' ? 'visible' : 'hidden'}`}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-16 6h16" /></svg>
           </label>
           {user?.uid ?

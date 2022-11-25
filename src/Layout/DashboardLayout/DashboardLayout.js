@@ -7,14 +7,14 @@ const DashboardLayout = () => {
   return (
     <div>
       <Header></Header>
-      <div className="drawer drawer-mobile">
+      <div className="drawer drawer-mobile h-auto">
         <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content">
+        <div className="drawer-content z-1">
           {/* <!-- Page content here --> */}
           <Outlet></Outlet>
 
         </div>
-        <div className="drawer-side z-0">
+        <div className="drawer-side z-1">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
             {/* <!-- admin route --> */}
