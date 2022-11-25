@@ -24,12 +24,29 @@ const LogIn = () => {
     })
     .catch(err => toast.error(err.message));
   }
+
+  const saveUserToDb = (name, email, role = 'Buyer') =>{
+    const userInfo = {name, email, role};
+    console.log(userInfo);
+    fetch('http://localhost:5000/users', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(userInfo)
+        })
+        .then(res => res.json())
+        .then(data =>{
+          console.log(data);
+        })
+  }
   
   const handleGoogleLogIn = () =>{
     googleSignIn(googleProvider)
     .then(result =>{
       const user = result.user;
       console.log(user)
+      saveUserToDb(user?.displayName, user?.email);
       toast.success('Log In Successfull');
       navigate(from, {replace: true});
     })

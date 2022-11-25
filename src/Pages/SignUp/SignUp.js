@@ -34,7 +34,7 @@ const SignUp = () => {
       .catch(err => toast.error(err.message));
   }
 
-  const saveUserToDb = (name, email, role) =>{
+  const saveUserToDb = (name, email, role = 'Buyer') =>{
     const userInfo = {name, email, role};
     console.log(userInfo);
     fetch('http://localhost:5000/users', {
@@ -55,6 +55,7 @@ const SignUp = () => {
       .then(result => {
         const user = result.user;
         console.log(user);
+        saveUserToDb(user?.displayName, user?.email)
         toast.success('Log In Successfull');
       })
       .catch(err => toast.error(err.message));
