@@ -35,15 +35,15 @@ export const router = createBrowserRouter([
     ]
   },
   {
-    path: '/shop',
+    path: '/category',
     element: <ShopLayout></ShopLayout>,
     children: [
       {
-        path: '/shop',
+        path: '/category',
         element: <Shop></Shop>
       },
       {
-        path: '/shop/category/:id',
+        path: '/category/:id',
         element: <Products></Products>
       }
     ]

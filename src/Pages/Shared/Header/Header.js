@@ -24,7 +24,7 @@ const Header = () => {
             </label>
             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
             <li><Link to='/'>Home</Link></li>
-            <li tabIndex={0}><Link to='/shop'>Shop</Link></li>
+            <li tabIndex={0}><Link to='/category'>Shop</Link></li>
             <li><Link>Blog</Link></li>
             <li>
               <label className="swap swap-rotate rounded-full btn-circle">
@@ -47,7 +47,7 @@ const Header = () => {
           <ul className="menu menu-horizontal p-0">
             <li><Link to='/'>Home</Link></li>
             {user?.uid && <li><Link to='/dashboard'>Dashboard</Link></li>}
-            <li tabIndex={0}><Link to='/shop'>Shop</Link></li>
+            <li tabIndex={0}><Link to='/category'>Shop</Link></li>
             <li><Link>Blog</Link></li>
             <li>
               <label className="swap swap-rotate rounded-full btn-circle">
@@ -62,12 +62,15 @@ const Header = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <label htmlFor="category-drawer" tabIndex={0} className={`btn btn-ghost btn-circle lg:hidden ${window.location.pathname === '/shop' ? 'visible' : 'hidden'}`}>
+
+          <label htmlFor="dashboard-drawer" tabIndex={1} className={`btn btn-ghost btn-circle lg:hidden ${(window.location.pathname === '/dashboard' || '/dashboard/my-products' || '/dashboard/add-a-product' || '/dashboard/my-orders' || '/dashboard/reported-items' || '/dashboard/all-buyers') ? 'visible' : 'hidden'}`}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-16 6h16" /></svg>
           </label>
-          <label htmlFor="dashboard-drawer" tabIndex={0} className={`btn btn-ghost btn-circle lg:hidden ${window.location.pathname === '/dashboard' || '/dashboard/my-products' || '/dashboard/add-a-product' || '/dashboard/my-orders' || '/dashboard/reported-items' || '/dashboard/all-buyers' ? 'visible' : 'hidden'}`}>
+
+          {/* <label htmlFor="category-drawer" tabIndex={0} className={`btn btn-ghost btn-circle lg:hidden ${window.location.pathname !== '/shop' ? 'hidden' : 'visible'}`}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-16 6h16" /></svg>
-          </label>
+          </label> */}
+
           {user?.uid ?
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">

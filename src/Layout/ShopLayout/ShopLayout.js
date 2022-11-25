@@ -38,9 +38,9 @@ const ShopLayout = () => {
           <label htmlFor="category-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
             {/* <!-- Sidebar content here --> */}
-            <li><Link to={`/shop`}>All Books</Link></li>
+            <li><Link to={`/category`}>All Books</Link></li>
             {
-              categories.map(category => <li key={category._id}><Link to={`/shop/category/${category?._id}`}>{category?.category_name}</Link></li>)
+              categories.map(category => <li key={category._id}><Link to={`/category/${category?._id}`}>{category?.category_name}</Link></li>)
             }
           </ul>
 
