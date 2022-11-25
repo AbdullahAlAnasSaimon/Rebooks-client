@@ -40,7 +40,7 @@ const ShopLayout = () => {
             {/* <!-- Sidebar content here --> */}
             <li><Link to={`/shop`}>All Books</Link></li>
             {
-              categories.map(category => <li key={category._id}><Link to={`/shop/category/${category?.category_name}`}>{category?.category_name}</Link></li>)
+              categories.map(category => <li key={category._id}><Link to={`/shop/category/${category?._id}`}>{category?.category_name}</Link></li>)
             }
           </ul>
 
