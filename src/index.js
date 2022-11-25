@@ -4,13 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthPrivider from './Context/AuthProvider/AuthPrivider';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+
+// Create a client
+const queryClient = new QueryClient();
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AuthPrivider>
-      <App />
-    </AuthPrivider>
+    <QueryClientProvider client={queryClient}>
+      <AuthPrivider>
+        <App />
+      </AuthPrivider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

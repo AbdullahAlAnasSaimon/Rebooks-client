@@ -1,4 +1,5 @@
 import DashboardLayout from "../../Layout/DashboardLayout/DashboardLayout";
+import ShopLayout from "../../Layout/ShopLayout/ShopLayout";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
@@ -29,9 +30,15 @@ export const router = createBrowserRouter([
         path: '/signup',
         element: <SignUp></SignUp>
       },
+    ]
+  },
+  {
+    path: '/shop',
+    element: <ShopLayout></ShopLayout>,
+    children: [
       {
         path: '/shop',
-        element: <PrivateRoute><Shop></Shop></PrivateRoute>
+        element: <Shop></Shop>
       }
     ]
   },
