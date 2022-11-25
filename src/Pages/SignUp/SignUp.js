@@ -4,8 +4,10 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
+import useTitle from '../../Hooks/useTitle/useTitle';
 
 const SignUp = () => {
+  useTitle('Sign Up');
   const { register, formState: { errors }, handleSubmit } = useForm();
   const { createUser, updateUser, googleSignIn, logOut } = useContext(AuthContext);
   const navigate = useNavigate();

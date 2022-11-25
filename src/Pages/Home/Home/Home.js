@@ -1,7 +1,9 @@
 import React from 'react';
+import useTitle from '../../../Hooks/useTitle/useTitle';
 import Banner from '../Banner/Banner';
 
 const Home = () => {
+  useTitle('Home');
   return (
     <div>
       <Banner></Banner>
