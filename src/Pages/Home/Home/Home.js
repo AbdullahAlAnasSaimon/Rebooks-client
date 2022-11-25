@@ -1,5 +1,5 @@
 import React from 'react';
-import useTitle from '../../../Hooks/useTitle/useTitle';
+import useTitle from '../../../Hooks/useTitle';
 import Banner from '../Banner/Banner';
 
 const Home = () => {

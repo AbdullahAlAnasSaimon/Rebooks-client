@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
-import useTitle from '../../Hooks/useTitle/useTitle';
+import useTitle from '../../Hooks/useTitle';
 
 const LogIn = () => {
   useTitle('Log In');

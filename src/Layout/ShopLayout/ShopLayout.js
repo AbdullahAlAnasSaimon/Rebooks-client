@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import Footer from '../../Pages/Shared/Footer/Footer';
 import Header from '../../Pages/Shared/Header/Header';
 import Loading from '../../Pages/Shared/Loading/Loading';

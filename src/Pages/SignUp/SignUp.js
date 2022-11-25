@@ -1,17 +1,25 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
-import useTitle from '../../Hooks/useTitle/useTitle';
+import useTitle from '../../Hooks/useTitle';
+import useToken from '../../Hooks/useToken';
 
 const SignUp = () => {
   useTitle('Sign Up');
   const { register, formState: { errors }, handleSubmit } = useForm();
   const { createUser, updateUser, googleSignIn, logOut } = useContext(AuthContext);
+
+  const [createdUserEmail, setCreatedUserEmail] = useState('');
+  const [token] = useToken(createdUserEmail);
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
+
+  if(token){
+    navigate('/');
+  }
 
   const handleSignUp = data => {
     console.log(data);
@@ -45,7 +53,7 @@ const SignUp = () => {
         })
         .then(res => res.json())
         .then(data =>{
-          getUserToken(email);
+          setCreatedUserEmail(email);
         })
   }
 
@@ -60,17 +68,7 @@ const SignUp = () => {
       .catch(err => toast.error(err.message));
   }
 
-  // jwt step 2
-  const getUserToken = email =>{
-    fetch(`http://localhost:5000/jwt?email=${email}`)
-    .then(res => res.json())
-    .then(data => {
-      if(data.accessToken){
-        localStorage.setItem('accessToken', data.accessToken);
-        navigate('/login');
-      }
-    })
-  }
+ 
 
   return (
     <div className=' flex justify-center items-center my-10'>
