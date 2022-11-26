@@ -1,12 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
 import Loading from '../../Shared/Loading/Loading';
 
 const AddProduct = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
-
+  const { user } = useContext(AuthContext);
+  const imgHostKey = process.env.REACT_APP_IMGBB_KEY;
   const { data: categories, isLoading } = useQuery({
     queryKey: ['categories'],
     queryFn: async () => {
@@ -21,10 +23,42 @@ const AddProduct = () => {
   }
 
   const handleAddProduct = (data) => {
-    console.log(data);
-    const id = categories.find(cId => data.category_name === cId.category_name);
-    console.log(id._id)
+    const time = new Date().toString();
+    const idOfCategory = categories.find(cid => data.category_name === cid.category_name);
+    const image = data.photo[0];
+    const formData = new FormData();
+    formData.append('image', image);
+    fetch(`https://api.imgbb.com/1/upload?key=${imgHostKey}`, {
+      method: 'POST',
+      body: formData
+    })
+      .then(res => res.json())
+      .then(imageData => {
+        console.log(imageData);
+        if (imageData.success) {
+          const bookData = {
+            name: data.name,
+            category_name: data.category_name,
+            categoryId: idOfCategory._id,
+            photo: imageData.data.url,
+            seller_name: user?.displayName,
+            condition: data.condition,
+            phone_number: data.phone_number,
+            location: data.location,
+            year_of_purchase: data.year_of_purchase,
+            year_of_use: data.year_of_use,
+            seller_email: user?.email,
+            resell_price: data.resell_price,
+            original_price: data.original_price,
+            availablity: true,
+            posting_time: time,
+            description: data.description
+          };
+          console.log(bookData);
+        }
+      })
   }
+
 
   return (
     <div className=''>
@@ -35,8 +69,8 @@ const AddProduct = () => {
           <div className='grid grid-cols-1 md:grid-cols-3 gap-5 mb-5'>
             <div className="form-control">
               <label className="label"><span className="label-text">Product Name</span> </label>
-              <input {...register("name")} type="name" placeholder="Product Name" className="input input-bordered " />
-              {/* {errors.name && <p className="text-red-500"><small>*{errors?.name?.message}</small></p>} */}
+              <input {...register("name", { required: "Name is required" })} type="name" placeholder="Product Name" className="input input-bordered " />
+              {errors.name && <p className="text-red-500"><small>*{errors?.name?.message}</small></p>}
             </div>
 
             <div className="form-control">
