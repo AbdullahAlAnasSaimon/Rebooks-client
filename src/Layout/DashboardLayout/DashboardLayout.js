@@ -2,12 +2,14 @@ import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
 import useAdmin from '../../Hooks/useAdmin';
+import useSeller from '../../Hooks/useSeller';
 import Footer from '../../Pages/Shared/Footer/Footer';
 import Header from '../../Pages/Shared/Header/Header';
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user?.email);
+  const [isSeller] = useSeller(user?.email);
 
   return (
     <div>
@@ -23,6 +25,7 @@ const DashboardLayout = () => {
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
             {/* <!-- admin route --> */}
+            <li><Link to='/dashboard/my-orders'>My Orders</Link></li>
             {
               isAdmin && <>
                 <li><Link to='/dashboard'>All Sellers</Link></li>
@@ -31,10 +34,13 @@ const DashboardLayout = () => {
               </>
             }
             {/* buyer route have to remove dashboard */}
-            <li><Link to='/dashboard/my-orders'>My Orders</Link></li>
             {/* seller route have to remove dashboard */}
-            <li><Link to='/dashboard/add-a-product'>Add A Product</Link></li>
-            <li><Link to='/dashboard/my-products'>My Products</Link></li>
+            {
+              isSeller && <>
+                <li><Link to='/dashboard'>My Products</Link></li>
+                <li><Link to='/dashboard/add-a-product'>Add A Product</Link></li>
+              </>
+            }
           </ul>
 
         </div>

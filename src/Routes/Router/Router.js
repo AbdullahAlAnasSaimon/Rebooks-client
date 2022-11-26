@@ -9,6 +9,7 @@ import LogIn from "../../Pages/LogIn/LogIn";
 import Products from "../../Pages/Shop/Products/Products";
 import Shop from "../../Pages/Shop/Shop";
 import SignUp from "../../Pages/SignUp/SignUp";
+import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -54,11 +55,15 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/dashboard',
-        element: <PrivateRoute><AllSellers></AllSellers></PrivateRoute>
+        element: <PrivateRoute><MyProducts></MyProducts></PrivateRoute>
+      },
+      {
+        path: '/dashboard/all-sellers',
+        element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
       },
       {
         path: '/dashboard/all-buyers',
-        element: <PrivateRoute><AllBuyers></AllBuyers></PrivateRoute>
+        element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
       },
       {
         path: '/dashboard/my-orders',
@@ -66,12 +71,9 @@ export const router = createBrowserRouter([
       },
       {
         path: '/dashboard/add-a-product',
-        element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
+        element: <AddProduct></AddProduct>
       },
-      {
-        path: '/dashboard/my-products',
-        element: <PrivateRoute><MyProducts></MyProducts></PrivateRoute>
-      }
+      
     ]
   }
 ])
