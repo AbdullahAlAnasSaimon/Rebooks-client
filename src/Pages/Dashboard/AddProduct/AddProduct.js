@@ -92,77 +92,77 @@ const AddProduct = () => {
 
             <div className="form-control">
               <label className="label"><span className="label-text">Photo</span></label>
-              <input {...register("photo")} type="file" className="file-input file-input-bordered" />
-              {/* {errors.file && <p className="text-red-500"><small>*{errors?.file?.message}</small></p>} */}
+              <input {...register("photo", { required: "Photo is required" })} type="file" className="file-input file-input-bordered" />
+              {errors.photo && <p className="text-red-500"><small>*{errors?.photo?.message}</small></p>}
             </div>
 
             <div className="form-control">
               <label className="label"><span className="label-text">Select Category</span> </label>
-              <select {...register("category_name")} className="select select-bordered">
+              <select {...register("category_name", { required: "Category is required" })} className="select select-bordered">
                 {
                   categories.map(category => <option key={category._id}>{category.category_name}</option>)
                 }
               </select>
-              {/* {errors.role && <p className="text-red-500"><small>*{errors?.role?.message}</small></p>} */}
+              {errors.category_name && <p className="text-red-500"><small>*{errors?.category_name?.message}</small></p>}
             </div>
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-3 gap-5 mb-5'>
             <div className="form-control">
               <label className="label"><span className="label-text">Contact Number</span> </label>
-              <input {...register("phone_number")} type="number" placeholder="Contact Number" className="input input-bordered " />
-              {/* {errors.name && <p className="text-red-500"><small>*{errors?.name?.message}</small></p>} */}
+              <input {...register("phone_number", { required: "Phone Number is required" })} type="number" placeholder="Contact Number" className="input input-bordered " />
+              {errors.phone_number && <p className="text-red-500"><small>*{errors?.phone_number?.message}</small></p>}
             </div>
 
             <div className="form-control">
               <label className="label"><span className="label-text">Location</span> </label>
-              <input {...register("location")} type="text" placeholder="Location" className="input input-bordered " />
-              {/* {errors.name && <p className="text-red-500"><small>*{errors?.name?.message}</small></p>} */}
+              <input {...register("location", { required: "Location is required" })} type="text" placeholder="Location" className="input input-bordered " />
+              {errors.location && <p className="text-red-500"><small>*{errors?.location?.message}</small></p>}
             </div>
 
             <div className="form-control">
               <label className="label"><span className="label-text">Condition</span> </label>
-              <select {...register("condition")} className="select select-bordered">
+              <select {...register("condition", { required: "Condition is required" })} className="select select-bordered">
                 <option>Excellent</option>
                 <option>Good</option>
                 <option>Average</option>
                 <option>Low</option>
               </select>
-              {/* {errors.role && <p className="text-red-500"><small>*{errors?.role?.message}</small></p>} */}
+              {errors.condition && <p className="text-red-500"><small>*{errors?.condition?.message}</small></p>}
             </div>
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-4 gap-5 mb-5'>
             <div className="form-control">
               <label className="label"><span className="label-text">Purchase Year</span> </label>
-              <input {...register("year_of_purchase")} type="text" placeholder="Purchase Year" className="input input-bordered " />
-              {/* {errors.name && <p className="text-red-500"><small>*{errors?.name?.message}</small></p>} */}
+              <input {...register("year_of_purchase", { required: "Year is required" })} type="text" placeholder="Purchase Year" className="input input-bordered " />
+              {errors.year_of_purchase && <p className="text-red-500"><small>*{errors?.year_of_purchase?.message}</small></p>}
             </div>
 
             <div className="form-control">
               <label className="label"><span className="label-text">Product Used Duration</span> </label>
-              <input {...register("year_of_use")} type="text" placeholder="Used Duration" className="input input-bordered " />
-              {/* {errors.name && <p className="text-red-500"><small>*{errors?.name?.message}</small></p>} */}
+              <input {...register("year_of_use", { required: "Use time is required" })} type="text" placeholder="Used Duration" className="input input-bordered " />
+              {errors.year_of_use && <p className="text-red-500"><small>*{errors?.year_of_use?.message}</small></p>}
             </div>
 
             <div className="form-control">
               <label className="label"><span className="label-text">Original Price</span> </label>
-              <input {...register("original_price")} type="text" placeholder="Original Price" className="input input-bordered " />
-              {/* {errors.name && <p className="text-red-500"><small>*{errors?.name?.message}</small></p>} */}
+              <input {...register("original_price", { required: "Original Price is required" })} type="text" placeholder="Original Price" className="input input-bordered " />
+              {errors.original_price && <p className="text-red-500"><small>*{errors?.original_price?.message}</small></p>}
             </div>
 
             <div className="form-control">
               <label className="label"><span className="label-text">Resell Price</span> </label>
-              <input {...register("resell_price")} type="text" placeholder="Resell Price" className="input input-bordered " />
-              {/* {errors.name && <p className="text-red-500"><small>*{errors?.name?.message}</small></p>} */}
+              <input {...register("resell_price", { required: "Resell Price is required" })} type="text" placeholder="Resell Price" className="input input-bordered " />
+              {errors.resell_price && <p className="text-red-500"><small>*{errors?.resell_price?.message}</small></p>}
             </div>
 
           </div>
 
           <div className="form-control">
             <label className="label"><span className="label-text">Description</span> </label>
-            <textarea {...register("description")} className="textarea textarea-bordered" placeholder="Bio"></textarea>
-            {/* {errors.name && <p className="text-red-500"><small>*{errors?.name?.message}</small></p>} */}
+            <textarea {...register("description", { required: "Description is required" })} className="textarea textarea-bordered" placeholder="Write Product Description"></textarea>
+            {errors.description && <p className="text-red-500"><small>*{errors?.description?.message}</small></p>}
           </div>
 
           <input className='btn btn-primary w-full my-5' type="submit" value='Add A Product' />
