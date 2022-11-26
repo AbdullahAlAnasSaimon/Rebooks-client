@@ -25,10 +25,12 @@ const DashboardLayout = () => {
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
             {/* <!-- admin route --> */}
+            <li><Link to='/dashboard'>Dashboard</Link></li>
             <li><Link to='/dashboard/my-orders'>My Orders</Link></li>
+
             {
               isAdmin && <>
-                <li><Link to='/dashboard'>All Sellers</Link></li>
+                <li><Link to='/dashboard/all-sellers'>All Sellers</Link></li>
                 <li><Link to='/dashboard/all-buyers'>All Buyers</Link></li>
                 <li><Link to='/dashboard/reported-items'>Reported Items</Link></li>
               </>
@@ -37,7 +39,7 @@ const DashboardLayout = () => {
             {/* seller route have to remove dashboard */}
             {
               isSeller && <>
-                <li><Link to='/dashboard'>My Products</Link></li>
+                <li><Link to='/dashboard/my-products'>My Products</Link></li>
                 <li><Link to='/dashboard/add-a-product'>Add A Product</Link></li>
               </>
             }

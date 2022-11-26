@@ -5,12 +5,14 @@ import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
+import MyProfile from "../../Pages/Dashboard/MyProfile/MyProfile";
 import LogIn from "../../Pages/LogIn/LogIn";
 import Products from "../../Pages/Shop/Products/Products";
 import Shop from "../../Pages/Shop/Shop";
 import SignUp from "../../Pages/SignUp/SignUp";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../../Layout/Main/Main");
@@ -55,7 +57,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/dashboard',
-        element: <PrivateRoute><MyProducts></MyProducts></PrivateRoute>
+        element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
+      },
+      {
+        path: '/dashboard/my-orders',
+        element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>
       },
       {
         path: '/dashboard/all-sellers',
@@ -66,13 +72,13 @@ export const router = createBrowserRouter([
         element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
       },
       {
-        path: '/dashboard/my-orders',
-        element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>
+        path: '/dashboard/add-a-product',
+        element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
       },
       {
-        path: '/dashboard/add-a-product',
-        element: <AddProduct></AddProduct>
-      },
+        path: '/dashboard/my-products',
+        element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
+      }
       
     ]
   }
