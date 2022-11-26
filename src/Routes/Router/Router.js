@@ -36,41 +36,41 @@ export const router = createBrowserRouter([
   },
   {
     path: '/category',
-    element: <ShopLayout></ShopLayout>,
+    element: <PrivateRoute><ShopLayout></ShopLayout></PrivateRoute>,
     children: [
       {
         path: '/category',
-        element: <Shop></Shop>
+        element: <PrivateRoute><Shop></Shop></PrivateRoute>
       },
       {
         path: '/category/:id',
-        element: <Products></Products>
+        element: <PrivateRoute><Products></Products></PrivateRoute>
       }
     ]
   },
   {
     path: '/dashboard',
-    element: <DashboardLayout></DashboardLayout>,
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
     children: [
       {
         path: '/dashboard',
-        element: <AllSellers></AllSellers>
+        element: <PrivateRoute><AllSellers></AllSellers></PrivateRoute>
       },
       {
         path: '/dashboard/all-buyers',
-        element: <AllBuyers></AllBuyers>
+        element: <PrivateRoute><AllBuyers></AllBuyers></PrivateRoute>
       },
       {
         path: '/dashboard/my-orders',
-        element: <MyOrders></MyOrders>
+        element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>
       },
       {
         path: '/dashboard/add-a-product',
-        element: <AddProduct></AddProduct>
+        element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
       },
       {
         path: '/dashboard/my-products',
-        element: <MyProducts></MyProducts>
+        element: <PrivateRoute><MyProducts></MyProducts></PrivateRoute>
       }
     ]
   }

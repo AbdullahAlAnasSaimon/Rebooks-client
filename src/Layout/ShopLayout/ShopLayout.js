@@ -10,7 +10,7 @@ const ShopLayout = () => {
   const { data: categories, isLoading } = useQuery({
     queryKey: ['categories'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/category');
+      const res = await fetch('https://ebooks-server.vercel.app/category');
       const data = await res.json();
       return data;
     }
@@ -21,7 +21,7 @@ const ShopLayout = () => {
   }
   console.log(categories);
 
-
+  
 
   return (
     <div>

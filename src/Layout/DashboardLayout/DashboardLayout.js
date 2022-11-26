@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
+import useAdmin from '../../Hooks/useAdmin';
 import Footer from '../../Pages/Shared/Footer/Footer';
 import Header from '../../Pages/Shared/Header/Header';
 
 const DashboardLayout = () => {
+  const { user } = useContext(AuthContext);
+  const [isAdmin] = useAdmin(user?.email);
+
   return (
     <div>
       <Header></Header>
@@ -18,9 +23,13 @@ const DashboardLayout = () => {
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
             {/* <!-- admin route --> */}
-            <li><Link to='/dashboard'>All Sellers</Link></li>
-            <li><Link to='/dashboard/all-buyers'>All Buyers</Link></li>
-            <li><Link to='/dashboard/reported-items'>Reported Items</Link></li>
+            {
+              isAdmin && <>
+                <li><Link to='/dashboard'>All Sellers</Link></li>
+                <li><Link to='/dashboard/all-buyers'>All Buyers</Link></li>
+                <li><Link to='/dashboard/reported-items'>Reported Items</Link></li>
+              </>
+            }
             {/* buyer route have to remove dashboard */}
             <li><Link to='/dashboard/my-orders'>My Orders</Link></li>
             {/* seller route have to remove dashboard */}

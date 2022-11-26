@@ -1,10 +1,11 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
 import useTitle from '../../Hooks/useTitle';
+import useToken from '../../Hooks/useToken';
 
 const LogIn = () => {
   useTitle('Log In');
@@ -13,16 +14,22 @@ const LogIn = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
+  const [loginUserEmail, setLoginUserEmail] = useState('');
+  const [token] = useToken(loginUserEmail);
 
   const from = location?.state?.from?.pathname || '/';
+
+  if(token){
+    navigate(from, {replace: true});
+  }
 
   const handleLogIn = data => {
     userLogIn(data.email, data.password)
     .then(result => {
       const user = result.user;
-      console.log(user);
+      // console.log(user);
+      setLoginUserEmail(data.email);
       toast.success('Log In Successfull');
-      navigate(from, {replace: true});
     })
     .catch(err => toast.error(err.message));
   }
@@ -30,7 +37,7 @@ const LogIn = () => {
   const saveUserToDb = (name, email, role = 'Buyer') =>{
     const userInfo = {name, email, role};
     console.log(userInfo);
-    fetch('http://localhost:5000/users', {
+    fetch('https://ebooks-server.vercel.app/users', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'
@@ -39,7 +46,8 @@ const LogIn = () => {
         })
         .then(res => res.json())
         .then(data =>{
-          console.log(data);
+          // console.log(email, data);
+          setLoginUserEmail(email);
         })
   }
   
@@ -47,10 +55,8 @@ const LogIn = () => {
     googleSignIn(googleProvider)
     .then(result =>{
       const user = result.user;
-      console.log(user)
       saveUserToDb(user?.displayName, user?.email);
       toast.success('Log In Successfull');
-      navigate(from, {replace: true});
     })
     .catch(err => toast.error(err.message));
   }

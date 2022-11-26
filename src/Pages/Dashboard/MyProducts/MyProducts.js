@@ -9,7 +9,7 @@ const MyProducts = () => {
   const { data: myProducts, isLoading } = useQuery({
     queryKey: ['my-products', user?.email],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/my-products?email=${user?.email}`, {
+      const res = await fetch(`https://ebooks-server.vercel.app/my-products?email=${user?.email}`, {
         headers: {
           authorization: `bearer ${localStorage.getItem('accessToken')}`
         }

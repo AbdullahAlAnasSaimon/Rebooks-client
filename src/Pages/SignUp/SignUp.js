@@ -2,7 +2,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
 import useTitle from '../../Hooks/useTitle';
 import useToken from '../../Hooks/useToken';
@@ -15,10 +15,13 @@ const SignUp = () => {
   const [createdUserEmail, setCreatedUserEmail] = useState('');
   const [token] = useToken(createdUserEmail);
   const navigate = useNavigate();
+  const location = useLocation();
   const googleProvider = new GoogleAuthProvider();
 
+  const from = location?.state?.from?.pathname || '/';
+
   if(token){
-    navigate('/');
+    navigate(from, {replace: true});
   }
 
   const handleSignUp = data => {
@@ -44,7 +47,7 @@ const SignUp = () => {
   const saveUserToDb = (name, email, role = 'Buyer') =>{
     const userInfo = {name, email, role};
     console.log(userInfo);
-    fetch('http://localhost:5000/users', {
+    fetch('https://ebooks-server.vercel.app/users', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'
@@ -53,6 +56,7 @@ const SignUp = () => {
         })
         .then(res => res.json())
         .then(data =>{
+          console.log(data);
           setCreatedUserEmail(email);
         })
   }
