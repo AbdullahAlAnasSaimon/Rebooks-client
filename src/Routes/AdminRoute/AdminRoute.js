@@ -7,7 +7,7 @@ import Loading from '../../Pages/Shared/Loading/Loading';
 const AdminRoute = ({children}) => {
   const { user, loading } = useContext(AuthContext);
   const [isAdmin, isAdminLoading] = useAdmin(user?.email);
-  const location = useLocation()
+  const location = useLocation();
 
   if (loading || isAdminLoading) {
     return <Loading />

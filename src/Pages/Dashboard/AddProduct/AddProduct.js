@@ -1,9 +1,19 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
 const AddProduct = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
+
+  const { data: categories, isLoading } = useQuery({
+    queryKey: ['categories'],
+    queryFn: async () => {
+      const res = await fetch('https://ebooks-server.vercel.app/category');
+      const data = await res.json();
+      return data;
+    }
+  })
 
   const handleAddProduct = () =>{
 
@@ -47,8 +57,7 @@ const AddProduct = () => {
             <select {...register("role", {
               required: true
             })} className="select select-bordered w-full max-w-xs">
-              <option>Buyer</option>
-              <option>Seller</option>
+              {}
             </select>
             {errors.role && <p className="text-red-500"><small>*{errors?.role?.message}</small></p>}
           </div>
