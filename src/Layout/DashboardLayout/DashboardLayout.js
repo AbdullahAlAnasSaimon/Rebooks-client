@@ -38,8 +38,6 @@ const DashboardLayout = () => {
                 <li><Link to='/dashboard/reported-items'>Reported Items</Link></li>
               </>
             }
-            {/* buyer route have to remove dashboard */}
-            {/* seller route have to remove dashboard */}
             {
               isSeller && <>
                 <li><Link to='/dashboard/my-products'>My Products</Link></li>

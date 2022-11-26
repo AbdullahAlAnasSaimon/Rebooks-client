@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import Loading from '../../Shared/Loading/Loading';
 
 const AddProduct = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
@@ -15,58 +16,48 @@ const AddProduct = () => {
     }
   })
 
-  const handleAddProduct = () =>{
+  if (isLoading) {
+    return <Loading />
+  }
 
+  const handleAddProduct = (data) => {
+    console.log(data);
+    const id = categories.find(cId => data.role === cId.category_name);
+    console.log(id._id)
   }
 
   return (
     <div className=''>
-        <h2 className='text-3xl font-bold my-5'>Add Product</h2>
+      <h2 className='text-3xl font-bold my-5'>Add Product</h2>
       <div className='m-5'>
         <form onSubmit={handleSubmit(handleAddProduct)}>
 
-          <div className="form-control w-full max-w-xs">
-            <label className="label"><span className="label-text">Name</span> </label>
-            <input {...register("name", {
-              required: 'Name is required'
-            })} type="name" placeholder="Your Name" className="input input-bordered w-full max-w-xs" />
-            {errors.name && <p className="text-red-500"><small>*{errors?.name?.message}</small></p>}
-          </div>
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
+            <div className="form-control">
+              <label className="label"><span className="label-text">Product Name</span> </label>
+              <input {...register("name")} type="name" placeholder="Product Name" className="input input-bordered " />
+              {/* {errors.name && <p className="text-red-500"><small>*{errors?.name?.message}</small></p>} */}
+            </div>
 
+            <div className="form-control">
+              <label className="label"><span className="label-text">Photo</span></label>
+              <input {...register("file")} type="file" className="file-input file-input-bordered" />
+              {/* {errors.file && <p className="text-red-500"><small>*{errors?.file?.message}</small></p>} */}
+            </div>
 
-          <div className="form-control w-full max-w-xs">
-            <label className="label"><span className="label-text">Email</span> </label>
-            <input {...register("email", {
-              required: 'Email Address is required'
-            })} type="email" placeholder="Your Email" className="input input-bordered w-full max-w-xs" />
-            {errors.email && <p className="text-red-500"><small>*{errors?.email?.message}</small></p>}
-          </div>
-
-          <div className="form-control w-full max-w-xs">
-            <label className="label"><span className="label-text">Password</span></label>
-            <input {...register("password", {
-              required: 'Password is required',
-              minLength: { value: 6, message: 'Password must be 6 character or longer' },
-              pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'Password should contain 1 Uppercase, 1 number, 1 special character' }
-            })} type="password" placeholder="Password" className="input input-bordered w-full max-w-xs" />
-            {errors.password && <p className="text-red-500"><small>*{errors?.password?.message}</small></p>}
-          </div>
-
-          <div className="form-control w-full max-w-xs">
-            <label className="label"><span className="label-text">Select Account Type</span> </label>
-            <select {...register("role", {
-              required: true
-            })} className="select select-bordered w-full max-w-xs">
-              {}
+            <div className="form-control">
+            <label className="label"><span className="label-text">Select Category</span> </label>
+            <select {...register("role")} className="select select-bordered">
+              {
+                categories.map(category => <option key={category._id}>{category.category_name}</option>)
+              }
             </select>
             {errors.role && <p className="text-red-500"><small>*{errors?.role?.message}</small></p>}
           </div>
-
-          <div className="form-control w-full max-w-xs">
-            <label className="label"><span className="label-text">Photo</span></label>
-            <input {...register("file")} type="file" className="file-input file-input-bordered w-full max-w-xs" />
-            {/* {errors.file && <p className="text-red-500"><small>*{errors?.file?.message}</small></p>} */}
           </div>
+
+
+          
 
           <input className='btn btn-primary w-full my-5 max-w-xs' type="submit" value='Add A Product' />
         </form>
