@@ -2,12 +2,14 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
 import Loading from '../../Shared/Loading/Loading';
 
 const AddProduct = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const imgHostKey = process.env.REACT_APP_IMGBB_KEY;
   const { data: categories, isLoading } = useQuery({
     queryKey: ['categories'],
@@ -54,7 +56,22 @@ const AddProduct = () => {
             posting_time: time,
             description: data.description
           };
-          console.log(bookData);
+
+          fetch('http://localhost:5000/products', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json'
+            },
+            body: JSON.stringify(bookData)
+          })
+          .then(res => res.json())
+          .then(data =>{
+            if(data.acknowledged){
+              toast.success('Product added Successfully');
+              navigate('/dashboard/my-products');
+            }
+          })
+
         }
       })
   }
