@@ -10,7 +10,7 @@ import useToken from '../../Hooks/useToken';
 const SignUp = () => {
   useTitle('Sign Up');
   const { register, formState: { errors }, handleSubmit } = useForm();
-  const { createUser, updateUser, googleSignIn, logOut } = useContext(AuthContext);
+  const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
 
   const [createdUserEmail, setCreatedUserEmail] = useState('');
   const [token] = useToken(createdUserEmail);
@@ -28,7 +28,7 @@ const SignUp = () => {
     console.log(data);
     createUser(data.email, data.password)
       .then(result => {
-        const user = result.user;
+        // const user = result.user;
         // logOut();
         toast.success('Account Created Successfully');
         const userProfile = {

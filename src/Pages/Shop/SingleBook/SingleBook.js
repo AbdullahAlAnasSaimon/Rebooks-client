@@ -1,6 +1,5 @@
 import React from 'react';
 import { MdVerified } from 'react-icons/md';
-import BookingModal from './BookingModal/BookingModal';
 
 const SingleBook = ({ books, setBookData }) => {
   console.log(books);

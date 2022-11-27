@@ -1,29 +1,21 @@
-import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import Footer from '../../Pages/Shared/Footer/Footer';
 import Header from '../../Pages/Shared/Header/Header';
-import Loading from '../../Pages/Shared/Loading/Loading';
 
 const ShopLayout = () => {
-
+  const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   
-  const { data: categories, isLoading } = useQuery({
-    queryKey: ['categories'],
-    queryFn: async () => {
-      const res = await fetch('https://ebooks-server.vercel.app/category',{
-        headers: {
-          authorization: `bearer ${localStorage.getItem('accessToken')}`
-        }
-      });
-      const data = await res.json();
-      return data;
-    }
-  })
-
-  if (isLoading) {
-    return <Loading />
-  }
+  useEffect(() => {
+    axios.get('https://ebooks-server.vercel.app/category')
+    .then(data => {
+      setCategories(data.data);
+      setIsLoading(false);
+    });
+  }, [])
+  
 
   return (
       <div>
@@ -38,10 +30,10 @@ const ShopLayout = () => {
           </div>
           <div className="drawer-side z-1 md:sticky md:top-[0rem] md:max-h-[100vh - 1rem] md:overflow-y-scroll md:inline-block">
             <label htmlFor="category-drawer" className="drawer-overlay"></label>
-            <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+            <ul className="menu p-4 w-80 bg-base-100 lg:bg-base-100/0 text-base-content">
               {/* <!-- Sidebar content here --> */}
               <li><Link to={`/category`}>All Books</Link></li>
-              {
+              { 
                 categories.map(category => <li key={category._id}><Link to={`/category/${category?._id}`}>{category?.category_name}</Link></li>)
               }
             </ul>

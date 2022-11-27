@@ -47,12 +47,24 @@ const MyProducts = () => {
         refetch();
       }
     })
-    
+  }
+
+  const handleAdvertise = advertise =>{
+    fetch(`http://localhost:5000/products/${advertise._id}`, {
+      method: 'PUT',
+      headers: {
+        authorization: `bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+    .then(res => res.json())
+    .then(data =>{
+      
+    })
   }
 
   return (
     <div>
-      <h2>My products</h2>
+      <h2 className='text-2xl my-5 font-bold text-center md:text-left'>My products</h2>
       <div>
         <div className="overflow-x-auto w-full">
           <table className="table w-full">
@@ -63,6 +75,7 @@ const MyProducts = () => {
                 <th>Product</th>
                 <th>Info</th>
                 <th>Sell Price</th>
+                <th>Availablity</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -85,13 +98,14 @@ const MyProducts = () => {
                     <span className="badge badge-ghost badge-sm">{product?.condition}</span>
                   </td>
                   <td>
-                    {product?.description.slice(0, 30)+"..."}
+                    {product?.description.slice(0, 20)+"..."}
                     <br />
                     <span className="badge badge-ghost badge-sm">{product?.posting_time.slice(0, 24)}</span>
                   </td>
                   <td>{product?.resell_price} $</td>
+                  <td>{product?.availablity ? <p><small className='bg-blue-200 py-1 px-2 rounded-full'>Available</small></p> : <p><small className='bg-red-200 py-1 px-2 rounded-full'>Sold</small></p>} </td>
                   <th>
-                    <button className="btn btn-primary btn-xs mb-2 w-full">Advertise</button>
+                    <button onClick={() => handleAdvertise(product?._id)} className="btn btn-primary btn-xs mb-2 w-full">Advertise</button>
                     <br />
                     <label onClick={() => setDeletingProduct(product)} htmlFor="my-modal" className="btn btn-error btn-xs w-full">Delete</label>
                   </th>

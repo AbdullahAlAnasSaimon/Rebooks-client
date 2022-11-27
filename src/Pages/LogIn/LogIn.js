@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
-import useAdmin from '../../Hooks/useAdmin';
 import useTitle from '../../Hooks/useTitle';
 import useToken from '../../Hooks/useToken';
 
@@ -27,7 +26,7 @@ const LogIn = () => {
   const handleLogIn = data => {
     userLogIn(data.email, data.password)
     .then(result => {
-      const user = result.user;
+      // const user = result.user;
       // console.log(user);
       setLoginUserEmail(data.email);
       toast.success('Log In Successfull');
