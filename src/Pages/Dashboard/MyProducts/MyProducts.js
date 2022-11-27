@@ -33,7 +33,7 @@ const MyProducts = () => {
     setDeletingProduct(null);
   }
 
-  const handleDeleteProduct = modalData =>{
+  const handleDelete = modalData =>{
     fetch(`http://localhost:5000/products/${modalData._id}`, {
       method: 'DELETE',
       headers: {
@@ -120,7 +120,7 @@ const MyProducts = () => {
       message={`If you delete once ${deletingProduct.name} It can not be undone.`}
       buttonName={`Delete`}
       closeModal={closeModal}
-      handleDeleteProduct={handleDeleteProduct}
+      handleDelete={handleDelete}
       modalData={deletingProduct}
       ></ConfirmationModal>}
     </div>

@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import { MdVerified } from 'react-icons/md';
 import Loading from '../Shared/Loading/Loading';
 import BookingModal from '../Shop/SingleBook/BookingModal/BookingModal';
 import SingleBook from '../Shop/SingleBook/SingleBook';

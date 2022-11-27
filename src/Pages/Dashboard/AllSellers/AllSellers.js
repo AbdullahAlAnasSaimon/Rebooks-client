@@ -20,7 +20,13 @@ const AllSellers = () => {
     return <Loading />
   }
 
-  console.log(allSeller);
+  const handleVerifySeller = id =>{
+    console.log(id);
+  }
+
+  const handleDeleteSeller = id =>{
+    console.log(id);
+  }
 
   return (
     <div>
@@ -43,8 +49,8 @@ const AllSellers = () => {
                   <th>{i + 1}</th>
                   <td>{seller.name}</td>
                   <td>{seller.email}</td>
-                  <td><button className='btn btn-primary btn-xs'>Verify</button></td>
-                  <td><button className='btn btn-error btn-xs'>Delete</button></td>
+                  <td><button onClick={() => handleVerifySeller(seller._id)} className='btn btn-primary btn-xs'>Verify</button></td>
+                  <td><button onClick={() => handleDeleteSeller(seller._id)} className='btn btn-error btn-xs'>Delete</button></td>
                 </tr>)
               }
             </tbody>
