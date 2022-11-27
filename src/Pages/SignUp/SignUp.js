@@ -32,7 +32,8 @@ const SignUp = () => {
         // logOut();
         toast.success('Account Created Successfully');
         const userProfile = {
-          displayName: data?.name
+          displayName: data?.name,
+          photoURL: data?.photoURL
         }
 
         updateUser(userProfile)
@@ -120,8 +121,8 @@ const SignUp = () => {
 
           <div className="form-control w-full max-w-xs">
             <label className="label"><span className="label-text">Photo</span></label>
-            <input {...register("file")} type="file" className="file-input file-input-bordered w-full max-w-xs" />
-            {/* {errors.file && <p className="text-red-500"><small>*{errors?.file?.message}</small></p>} */}
+            <input {...register("photoURL", {required: "Photo is required"})} type="text" className="input input-bordered w-full max-w-xs" placeholder='Enter your Photo URL'/>
+            {errors.photoURL && <p className="text-red-500"><small>*{errors?.photoURL?.message}</small></p>}
           </div>
 
           <input className='btn btn-primary w-full my-5' type="submit" value='Sign Up' />

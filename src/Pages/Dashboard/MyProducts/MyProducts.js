@@ -105,7 +105,7 @@ const MyProducts = () => {
                   <td>{product?.resell_price} $</td>
                   <td>{product?.availablity ? <p><small className='bg-blue-200 py-1 px-2 rounded-full'>Available</small></p> : <p><small className='bg-red-200 py-1 px-2 rounded-full'>Sold</small></p>} </td>
                   <th>
-                    <button onClick={() => handleAdvertise(product?._id)} className="btn btn-primary btn-xs mb-2 w-full">Advertise</button>
+                    {product?.advertisement ? <p className='text-center -mb-4 font-semibold italic'><small className='bg-gray-200 py-1 px-3 rounded-full'>Advertising</small></p> : <button onClick={() => handleAdvertise(product?._id)} className="btn btn-primary btn-xs mb-2 w-full">Advertise</button>}
                     <br />
                     <label onClick={() => setDeletingProduct(product)} htmlFor="my-modal" className="btn btn-error btn-xs w-full">Delete</label>
                   </th>

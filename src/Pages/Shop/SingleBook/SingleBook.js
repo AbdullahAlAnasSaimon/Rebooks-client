@@ -28,7 +28,7 @@ const SingleBook = ({ books, setBookData }) => {
           </div>
           <p>{description.slice(0, 100)}</p>
           <div className="card-actions justify-start">
-            <label onClick={() => setBookData(books)} htmlFor="booking-modal" className="btn btn-primary">Book Now</label>
+            {<label onClick={() => setBookData(books)} htmlFor="booking-modal" className={`btn btn-primary ${!books?.availability && 'disabled'}`}>Book Now</label>}
           </div>
         </div>
         <figure className='w-auto rounded-xl p-4'><img className='rounded-lg md:w-[430px] md:h-[220px]' src={photo} alt="Movie" /></figure>
