@@ -1,9 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import Loading from '../../Shared/Loading/Loading';
 
 const AllBuyers = () => {
-  const { data: allBuyer, isLoading } = useQuery({
+  const [deleting, setDeleting] = useState(null);
+
+  const { data: allBuyer, isLoading, refetch } = useQuery({
     queryKey: ['my-products'],
     queryFn: async () => {
       const res = await fetch('http://localhost:5000/users/all-buyer', {
@@ -20,11 +24,30 @@ const AllBuyers = () => {
     return <Loading />
   }
 
-  console.log(allBuyer);
+  const closeModal = () =>{
+    setDeleting(null);
+  }
+
+  const handleDelete = buyer =>{
+    fetch(`http://localhost:5000/users/${buyer._id}`, {
+      method: 'DELETE',
+      // headers: {
+      //   authorization: `bearer ${localStorage.getItem('accessToken')}`
+      // }
+    })
+    .then(res => res.json())
+    .then(data =>{
+      if(data.deletedCount > 0){
+        toast.success(`${buyer.name} Deleted Successfully`);
+        refetch();
+      }
+    })
+  }
+
 
   return (
     <div>
-      <h2>all Buyers</h2>
+      <h2 className='text-2xl text-center md:text-left font-bold my-5'>All Buyers</h2>
       <div>
         <div className="overflow-x-auto">
           <table className="table w-full">
@@ -42,13 +65,21 @@ const AllBuyers = () => {
                   <th>{i + 1}</th>
                   <td>{buyer.name}</td>
                   <td>{buyer.email}</td>
-                  <td><button className='btn btn-error btn-xs'>Delete</button></td>
+                  <td><label onClick={() => setDeleting(buyer)} htmlFor="my-modal" className='btn btn-error btn-xs'>Delete</label></td>
                 </tr>)
               }
             </tbody>
           </table>
         </div>
       </div>
+      {deleting && <ConfirmationModal
+        title={`Are you sure? You want to delete?`}
+        message={`If you delete once ${deleting.name} It can not be undone.`}
+        buttonName={`Delete`}
+        closeModal={closeModal}
+        handleDelete={handleDelete}
+        modalData={deleting}
+      ></ConfirmationModal>}
     </div>
   );
 };

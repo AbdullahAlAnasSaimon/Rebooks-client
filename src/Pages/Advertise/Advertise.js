@@ -26,7 +26,7 @@ const Advertise = () => {
   return (
     <>
       {
-        advertised.length > 0 &&
+        advertised?.length > 0 &&
         <div>
           <h2 className='text-3xl font-bold text-center my-10'>Advertise</h2>
           <div className='w-11/12 mx-auto'>

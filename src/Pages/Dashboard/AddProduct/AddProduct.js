@@ -36,7 +36,6 @@ const AddProduct = () => {
     })
       .then(res => res.json())
       .then(imageData => {
-        console.log(imageData);
         if (imageData.success) {
           const bookData = {
             name: data.name,

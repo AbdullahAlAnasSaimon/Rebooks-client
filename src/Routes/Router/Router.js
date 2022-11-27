@@ -7,6 +7,7 @@ import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import MyProfile from "../../Pages/Dashboard/MyProfile/MyProfile";
 import LogIn from "../../Pages/LogIn/LogIn";
+import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 import Products from "../../Pages/Shop/Products/Products";
 import Shop from "../../Pages/Shop/Shop";
 import SignUp from "../../Pages/SignUp/SignUp";
@@ -85,7 +86,10 @@ export const router = createBrowserRouter([
         path: '/dashboard/my-products',
         element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
       }
-      
     ]
+  },
+  {
+    path: '*',
+    element: <DisplayError></DisplayError>
   }
 ])

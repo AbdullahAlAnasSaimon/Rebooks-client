@@ -50,7 +50,7 @@ const MyProducts = () => {
   }
 
   const handleAdvertise = advertise =>{
-    fetch(`http://localhost:5000/products/${advertise._id}`, {
+    fetch(`http://localhost:5000/products/${advertise}`, {
       method: 'PUT',
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -58,7 +58,10 @@ const MyProducts = () => {
     })
     .then(res => res.json())
     .then(data =>{
-      
+      if(data.modifiedCount > 0){
+        toast.success('Product is Advertising');
+        refetch();
+      }
     })
   }
 
