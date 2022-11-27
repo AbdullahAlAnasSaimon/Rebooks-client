@@ -6,6 +6,7 @@ import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import MyProfile from "../../Pages/Dashboard/MyProfile/MyProfile";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
 import LogIn from "../../Pages/LogIn/LogIn";
 import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 import Products from "../../Pages/Shop/Products/Products";
@@ -69,6 +70,11 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/my-orders',
         element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
+      },
+      {
+        path: '/dashboard/payment/:id',
+        loader: ({params}) => fetch(`http://localhost:5000/my-orders/${params.id}`),
+        element: <BuyerRoute><Payment></Payment></BuyerRoute>
       },
       {
         path: '/dashboard/all-sellers',
