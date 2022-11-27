@@ -10,12 +10,14 @@ const Header = () => {
 
   const handleLogOut = () => {
     logOut()
-      .then(() => { })
+      .then(() => {
+        localStorage.removeItem('accessToken');
+      })
       .catch(err => toast.error(err.message))
   }
 
   return (
-    <div className='bg-gray-50/50 backdrop-blur sticky top-0 border-b-2 border-blue-100 z-[9999]'>
+    <div className='bg-gray-50/5'>
       <div className="navbar w-full md:w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">

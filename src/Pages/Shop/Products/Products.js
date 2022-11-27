@@ -12,7 +12,7 @@ const Products = () => {
       {
         products.length > 0 ?
         <>
-          <h2>{products[0]?.category_name}</h2>
+          <h2 className='text-3xl font-bold text-center my-10'>{products[0]?.category_name}</h2>
           <div className=''>
             {
               products.map(book => <SingleBook
@@ -22,7 +22,7 @@ const Products = () => {
             }
           </div>
         </>
-        : <p className='flex justify-center items-center min-h-screen text-3xl text-gray-300 font-bold'>No Data Found</p>
+        : <p className='flex justify-center items-center min-h-[400px] text-3xl text-gray-300 font-bold'>No Data Found</p>
       }
     </div>
   );

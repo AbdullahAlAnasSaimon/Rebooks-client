@@ -36,6 +36,9 @@ const MyProducts = () => {
   const handleDeleteProduct = modalData =>{
     fetch(`http://localhost:5000/products/${modalData._id}`, {
       method: 'DELETE',
+      headers: {
+        authorization: `bearer ${localStorage.getItem('accessToken')}`
+      }
     })
     .then(res => res.json())
     .then(data =>{
@@ -75,8 +78,8 @@ const MyProducts = () => {
                         </div>
                       </div>
                       <div>
-                        <div className="font-bold">{product?.name}</div>
-                        <div className="text-[11px] opacity-50">{product?.category_name}</div>
+                        <div className="font-bold">{product?.name.length > 16 ? product?.name.slice(0, 15) + '...' : product?.name}</div>
+                        <div className="text-[11px] opacity-70">{product?.category_name}</div>
                       </div>
                     </div>
                     <span className="badge badge-ghost badge-sm">{product?.condition}</span>
@@ -101,6 +104,7 @@ const MyProducts = () => {
       {deletingProduct && <ConfirmationModal
       title={`Are you sure? You want to delete?`}
       message={`If you delete once ${deletingProduct.name} It can not be undone.`}
+      buttonName={`Delete`}
       closeModal={closeModal}
       handleDeleteProduct={handleDeleteProduct}
       modalData={deletingProduct}

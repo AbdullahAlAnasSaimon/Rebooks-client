@@ -7,7 +7,11 @@ const useAdmin = email => {
   useEffect(() => {
 
     if (email) {
-      fetch(`http://localhost:5000/users/admin/${email}`)
+      fetch(`http://localhost:5000/users/admin/${email}`,{
+        headers: {
+          authorization: `bearer ${localStorage.getItem('accessToken')}`
+        }
+      })
         .then(res => res.json())
         .then(data => {
           console.log(data);

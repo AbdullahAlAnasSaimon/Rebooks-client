@@ -1,4 +1,5 @@
 import React from 'react';
+import {MdVerified} from 'react-icons/md';
 
 const SingleBook = ({ book }) => {
   console.log(book);
@@ -8,14 +9,14 @@ const SingleBook = ({ book }) => {
       <div className="card card-side bg-base-100 shadow-xl flex-col-reverse md:flex-row">
         <div className="card-body">
           <h2 className="card-title">{name}</h2>
-          <p>{seller_name}</p>
+          <p>{seller_name} <MdVerified className='inline-block text-blue-600'/></p>
           <div className='grid grid-cols-2'>
             <p>Condition: {condition}</p>
             <p>Location: {location}</p>
           </div>
           <div className='grid grid-cols-2'>
             <p>Number: {phone_number}</p>
-            <p>{posting_time}</p>
+            <p>{posting_time.slice(0, 24)}</p>
           </div>
           <div className='grid grid-cols-2'>
             <p>Purchase: {year_of_purchase}</p>

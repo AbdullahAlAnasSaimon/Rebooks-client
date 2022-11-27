@@ -11,7 +11,11 @@ const ShopLayout = () => {
   const { data: categories, isLoading } = useQuery({
     queryKey: ['categories'],
     queryFn: async () => {
-      const res = await fetch('https://ebooks-server.vercel.app/category');
+      const res = await fetch('https://ebooks-server.vercel.app/category',{
+        headers: {
+          authorization: `bearer ${localStorage.getItem('accessToken')}`
+        }
+      });
       const data = await res.json();
       return data;
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ConfirmationModal = ({title, message, closeModal, handleDeleteProduct, modalData}) => {
+const ConfirmationModal = ({title, message, buttonName, closeModal, handleDeleteProduct, modalData}) => {
   return (
     <div>
       {/* The button to open modal */}
@@ -14,7 +14,7 @@ const ConfirmationModal = ({title, message, closeModal, handleDeleteProduct, mod
           <p className="py-4">{message}</p>
           <div className="modal-action">
             <button className='btn btn-outline' onClick={closeModal}>Cancel</button>
-            <label onClick={() => handleDeleteProduct(modalData)} htmlFor="my-modal" className="btn">Delete</label>
+            <label onClick={() => handleDeleteProduct(modalData)} htmlFor="my-modal" className="btn">{buttonName}</label>
           </div>
         </div>
       </div>

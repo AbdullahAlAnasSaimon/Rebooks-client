@@ -8,7 +8,11 @@ const Shop = () => {
   const {data: allBooks, isLoading} = useQuery({
     queryKey: ['products'],
     queryFn: async () =>{
-      const res = await fetch('https://ebooks-server.vercel.app/products');
+      const res = await fetch('https://ebooks-server.vercel.app/products',{
+        headers: {
+          authorization: `bearer ${localStorage.getItem('accessToken')}`
+        }
+      });
       const data = await res.json();
       return data;
     }

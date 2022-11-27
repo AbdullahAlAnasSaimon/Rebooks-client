@@ -7,9 +7,9 @@ const AllSellers = () => {
     queryKey: ['my-products'],
     queryFn: async () => {
       const res = await fetch('http://localhost:5000/users/all-seller', {
-        // headers: {
-        //   authorization: `bearer ${localStorage.getItem('accessToken')}`
-        // }
+        headers: {
+          authorization: `bearer ${localStorage.getItem('accessToken')}`
+        }
       })
       const data = await res.json();
       return data;
