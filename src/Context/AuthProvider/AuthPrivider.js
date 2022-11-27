@@ -44,6 +44,7 @@ const AuthPrivider = ({children}) => {
     return () => unsubscribe();
   }, [])
 
+
   const authInfo = {
     user,
     setUser,
