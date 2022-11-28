@@ -72,7 +72,7 @@ const MyOrders = () => {
                         </Link>
                       }
                       {
-                        booked.product_price && booked.paid && <span>Paid</span>
+                        booked.product_price && booked.paid && <span className='bg-blue-200 px-3 py-1 rounded-full'><small>Paid</small></span>
                       }
                     </td>
                     <td><label onClick={() => setDeleting(booked)} htmlFor="my-modal" className='btn btn-error btn-xs'>Delete</label></td>

@@ -11,6 +11,7 @@ const AddProduct = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const imgHostKey = process.env.REACT_APP_IMGBB_KEY;
+
   const { data: categories, isLoading } = useQuery({
     queryKey: ['categories'],
     queryFn: async () => {
@@ -20,9 +21,21 @@ const AddProduct = () => {
     }
   })
 
+  const {data: verified} = useQuery({
+    queryKey: ['verify'],
+    queryFn: async () =>{
+      const res = await fetch(`http://localhost:5000/users?email=${user?.email}`)
+      const data = await res.json()
+      return data;
+    }
+  })
+
+
+
   if (isLoading) {
     return <Loading />
   }
+
 
   const handleAddProduct = (data) => {
     const time = new Date().toString();
@@ -49,6 +62,7 @@ const AddProduct = () => {
             year_of_purchase: data.year_of_purchase,
             year_of_use: data.year_of_use,
             seller_email: user?.email,
+            verified: verified.verified ? verified.verified : false,
             resell_price: data.resell_price,
             original_price: data.original_price,
             availablity: true,

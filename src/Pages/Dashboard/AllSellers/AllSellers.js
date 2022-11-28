@@ -23,8 +23,20 @@ const AllSellers = () => {
     return <Loading />
   }
 
-  const handleVerifySeller = id => {
-    console.log(id);
+  const handleVerifySeller = seller => {
+    console.log(seller.email);
+    fetch(`http://localhost:5000/users/${seller.email}`,{
+      method: 'PUT',
+      headers: {
+        authorization: `bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+    .then(res => res.json())
+    .then(data =>{
+      if(data.modifiedCount > 0){
+        toast.success(`${seller.name} is now verified seller`);
+      }
+    })
   }
 
   const closeModal = () =>{
@@ -68,7 +80,7 @@ const AllSellers = () => {
                   <th>{i + 1}</th>
                   <td>{seller.name}</td>
                   <td>{seller.email}</td>
-                  <td><button onClick={() => handleVerifySeller(seller._id)} className='btn btn-primary btn-xs'>Verify</button></td>
+                  <td><button onClick={() => handleVerifySeller(seller)} className='btn btn-primary btn-xs'>Verify</button></td>
                   <td><label onClick={() => setDeleting(seller)} htmlFor="my-modal" className='btn btn-error btn-xs'>Delete</label></td>
                 </tr>)
               }

@@ -6,6 +6,7 @@ import SingleBook from './SingleBook/SingleBook';
 
 const Shop = () => {
   const [bookData, setBookData] = useState({});
+  
   const { data: allBooks, isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
