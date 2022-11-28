@@ -142,7 +142,7 @@ const AddProduct = () => {
               <select {...register("condition", { required: "Condition is required" })} className="select select-bordered">
                 <option>Excellent</option>
                 <option>Good</option>
-                <option>Average</option>
+                <option>Fair</option>
                 <option>Low</option>
               </select>
               {errors.condition && <p className="text-red-500"><small>*{errors?.condition?.message}</small></p>}

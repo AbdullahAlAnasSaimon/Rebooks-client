@@ -65,7 +65,18 @@ const MyOrders = () => {
                 myBooking?.map((booked, i) =>
                   <tr key={booked._id}>
                     <th>{i + 1}</th>
-                    <td>{booked.product_name}</td>
+                    <td>
+                      <div className="flex items-center space-x-3">
+                        <div className="avatar">
+                          <div className="mask mask-squircle w-12 h-12">
+                            <img src={booked.product_photo} alt="Avatar Tailwind CSS Component" />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="font-bold">{booked.product_name}</div>
+                        </div>
+                      </div>
+                    </td>
                     <td>$ {booked.product_price}</td>
                     <td>
                       {

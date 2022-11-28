@@ -2,7 +2,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
 import useTitle from '../../Hooks/useTitle';
 import useToken from '../../Hooks/useToken';
@@ -10,26 +10,20 @@ import useToken from '../../Hooks/useToken';
 const SignUp = () => {
   useTitle('Sign Up');
   const { register, formState: { errors }, handleSubmit } = useForm();
-  const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
+  const { createUser, updateUser, googleSignIn, logOut } = useContext(AuthContext);
 
   const [createdUserEmail, setCreatedUserEmail] = useState('');
   const [token] = useToken(createdUserEmail);
   const navigate = useNavigate();
-  const location = useLocation();
   const googleProvider = new GoogleAuthProvider();
 
-  const from = location?.state?.from?.pathname || '/';
-
-  if(token){
-    navigate(from, {replace: true});
-  }
 
   const handleSignUp = data => {
     console.log(data);
     createUser(data.email, data.password)
       .then(result => {
         // const user = result.user;
-        // logOut();
+        logOut();
         toast.success('Account Created Successfully');
         const userProfile = {
           displayName: data?.name,
@@ -38,6 +32,7 @@ const SignUp = () => {
 
         updateUser(userProfile)
         .then(() => { 
+          navigate('/login');
           saveUserToDb(data?.name, data?.email, data?.role);
         })
         .catch(err => toast.error(err.message))
@@ -47,7 +42,6 @@ const SignUp = () => {
 
   const saveUserToDb = (name, email, role = 'Buyer') =>{
     const userInfo = {name, email, role};
-    console.log(userInfo);
     fetch('https://ebooks-server.vercel.app/users', {
           method: 'POST',
           headers: {
@@ -57,7 +51,6 @@ const SignUp = () => {
         })
         .then(res => res.json())
         .then(data =>{
-          console.log(data);
           setCreatedUserEmail(email);
         })
   }

@@ -50,11 +50,11 @@ const SingleBook = ({ books, setBookData }) => {
                 <p><strong>Condition:</strong> {condition}</p>
                 <p><strong>Location:</strong> {location}</p>
                 <p><strong>Purchase:</strong> {year_of_purchase}</p>
-                <p><strong>Used Time:</strong> {year_of_use}</p>
+                <p><strong>Year of Use:</strong> {year_of_use}</p>
                 <p><strong>Contact No.:</strong> {phone_number}</p>
               </div>
               <div className="card-actions justify-start">
-                {<label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0' disabled={!books?.availablity}>{books?.availablity ? 'Buy Now' : 'Booked'}</label>}
+                {<label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0' disabled={!books?.availablity}>{books?.availablity ? 'Book Now' : 'Unavailable'}</label>}
                 <button onClick={() => handleReportItem(books)} className='btn btn-warning' disabled={report}><MdReport className='inline-block mr-1' /> Report to Admin</button>
               </div>
             </div>
