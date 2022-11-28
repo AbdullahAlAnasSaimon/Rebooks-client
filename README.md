@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# ReBooks
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live Site Link: [ReBooks](https://rebooks-f1684.web.app/)
 
-## Available Scripts
+## Details:
 
-In the project directory, you can run:
+ReBooks is a online resell book platform. The book data load by categories. Where Sellers can sell their used books with a good price. Sellers can advertise their product. Buyers can book product and can pay with a real stripe payment system. Admin can controll sellers and buyers.
 
-### `npm start`
+### Functionality: 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Implement Authentication system (login/signup).
+- Private Route Applied.
+- Seller Route, Buyer Route, Admin Route Applied
+- Implement JWT token for secure data on server side.
+- Only Seller can add Products
+- Buyer can buy books.
+- Applied spinner on data load.
+- Admin can verify seller and delete both buyer and seller.
+- Seller can advertise product which show on home page.
+- Buyer can Pay with stripe payment system.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Features:
 
-### `npm test`
+- Used TailwindCss for responsiveness.
+- Used daisyUi for TailwindCss component library.
+- Used React for single page application.
+- Used React Router Dom.
+- Used React hook form.
+- Used Axios.
+- Used React Query.
+- Used Stripe Payment System.
+- Used Firebase for authentication system & hosting.
+- Used JWT for secure data in server side.
+- Used Expressjs in the backend.
+- Used MongoDB as database for storing data.
+- Used React icon.
+- Used React hot toast.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

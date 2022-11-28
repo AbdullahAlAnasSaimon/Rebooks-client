@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { FaPhoneAlt, FaUserCircle } from 'react-icons/fa';
-import { MdAccessTimeFilled, MdLocationPin, MdReport, MdVerified } from 'react-icons/md';
-import {BsFillCheckCircleFill} from 'react-icons/bs';
+import {  FaUserCircle } from 'react-icons/fa';
+import {  MdReport, MdVerified } from 'react-icons/md';
 import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
 
 const SingleBook = ({ books, setBookData }) => {
