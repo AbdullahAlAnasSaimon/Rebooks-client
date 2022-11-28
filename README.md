@@ -2,8 +2,10 @@
 
 Live Site Link: [ReBooks](https://rebooks-f1684.web.app/)
 
-admin email: tom@mas.com
-admin password: 123456@A
+
+adminEmail: <tom@mas.com>
+
+adminPassword: <123456@A>
 
 ## Details:
 
