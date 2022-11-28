@@ -62,6 +62,7 @@ const AddProduct = () => {
             year_of_purchase: data.year_of_purchase,
             year_of_use: data.year_of_use,
             seller_email: user?.email,
+            seller_photo: user?.photoURL,
             verified: verified.verified ? verified.verified : false,
             resell_price: data.resell_price,
             original_price: data.original_price,

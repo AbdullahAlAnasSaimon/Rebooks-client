@@ -18,7 +18,7 @@ const Header = () => {
   }
 
   return (
-    <div className='bg-gray-50/5'>
+    <div className='bg-blue-200/60 backdrop-blur sticky top-0 z-[9999] border-b-2 border-blue-200'>
       <div className="navbar w-full md:w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -28,7 +28,7 @@ const Header = () => {
             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
             <li><Link to='/'>Home</Link></li>
             <li tabIndex={0}><Link to='/category'>Shop</Link></li>
-            <li><Link>Blog</Link></li>
+            <li><Link to='/blog'>Blog</Link></li>
             <li>
               <label className="swap swap-rotate rounded-full btn-circle">
                 {/* <!-- this hidden checkbox controls the state --> */}
@@ -48,10 +48,10 @@ const Header = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
-            <li><Link to='/'>Home</Link></li>
-            {user?.uid && <li><Link to='/dashboard'>Dashboard</Link></li>}
-            <li tabIndex={0}><Link to='/category'>Shop</Link></li>
-            <li><Link>Blog</Link></li>
+            <li><Link to='/' className='rounded-full'>Home</Link></li>
+            {user?.uid && <li><Link to='/dashboard' className='rounded-full'>Dashboard</Link></li>}
+            <li tabIndex={0}><Link to='/category' className='rounded-full'>Shop</Link></li>
+            <li><Link to='/blog' className='rounded-full'>Blog</Link></li>
             <li>
               <label className="swap swap-rotate rounded-full btn-circle">
                 {/* <!-- this hidden checkbox controls the state --> */}
@@ -67,10 +67,6 @@ const Header = () => {
         <div className="navbar-end">
 
           <label htmlFor="dashboard-drawer" tabIndex={1} className={`btn btn-ghost btn-circle lg:hidden ${(window.location.pathname === '/dashboard' || '/dashboard/my-products' || '/dashboard/add-a-product' || '/dashboard/my-orders' || '/dashboard/reported-items' || '/dashboard/all-buyers') ? 'visible' : 'hidden'}`}>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-16 6h16" /></svg>
-          </label>
-
-          <label htmlFor="category-drawer" tabIndex={0} className={`btn btn-ghost btn-circle lg:hidden ${window.location.pathname === '/category' ? 'visible' : 'hidden' }`}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-16 6h16" /></svg>
           </label>
 

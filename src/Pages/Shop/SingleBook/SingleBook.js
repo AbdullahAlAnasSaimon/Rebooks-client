@@ -1,56 +1,64 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { MdReport, MdVerified } from 'react-icons/md';
+import { FaPhoneAlt, FaUserCircle } from 'react-icons/fa';
+import { MdAccessTimeFilled, MdLocationPin, MdReport, MdVerified } from 'react-icons/md';
+import {BsFillCheckCircleFill} from 'react-icons/bs';
+import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
 
 const SingleBook = ({ books, setBookData }) => {
-  
-  const { name, verified, report, condition, description, location, original_price, phone_number, photo, posting_time, resell_price, seller_name, year_of_purchase, year_of_use, paid } = books;
+  const { user } = useContext(AuthContext);
+  const { name, seller_photo, verified, report, condition, description, location, original_price, phone_number, photo, posting_time, resell_price, seller_name, year_of_purchase, year_of_use, paid } = books;
 
 
   const handleReportItem = books => {
     fetch(`http://localhost:5000/reported-product/${books._id}`, {
       method: 'PUT',
     })
-    .then(res => res.json())
-    .then(data =>{
-      if(data.modifiedCount > 0){
-        toast.success('Reported Successfully');
-      }
-    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.modifiedCount > 0) {
+          toast.success('Reported Successfully');
+        }
+      })
   }
 
 
   return (
     <>
       {
-        !paid && <div className='my-5 w-11/12 md:w-full mx-auto md:mx-0'>
-          <div className="card card-side bg-base-100 shadow-xl flex-col-reverse md:flex-row">
-            <div className="card-body">
+        !paid && <div className='my-8 w-11/12 md:w-full mx-auto md:mx-0'>
+          <div className="card card-side shadow-lg flex-col-reverse md:flex-row bg-blue-100/30 border-2 border-blue-100 md:mr-5">
+            <div className="card-body md:w-10/12">
               <h2 className="card-title">{name}</h2>
-              <p>{seller_name} {verified && <MdVerified className='inline-block text-blue-600' />}</p>
-              <div className='grid grid-cols-2'>
-                <p>Condition: {condition}</p>
-                <p>Location: {location}</p>
+              <div className='flex'>
+                <div className="avatar placeholder">
+                  <div className="rounded-full w-10">
+                    {seller_photo ? <img src={seller_photo} alt="" /> : <FaUserCircle className='text-[40px] text-gray-700' />}
+                  </div>
+                </div>
+                <div className='ml-2'>
+                  <p>{seller_name} {verified && <MdVerified className='inline-block text-blue-600' />}</p>
+                  <p className='text-[12px]'>{posting_time.slice(0, 24)}</p>
+                </div>
               </div>
-              <div className='grid grid-cols-2'>
-                <p>Number: {phone_number}</p>
-                <p>{posting_time.slice(0, 24)}</p>
+              <div className=''>
+                <p className='text-2xl font-semibold text-blue-500'> ${resell_price} <span><del className='text-red-300 text-[16px]'>${original_price}</del></span></p>
               </div>
-              <div className='grid grid-cols-2'>
-                <p>Purchase: {year_of_purchase}</p>
-                <p>Use Time: {year_of_use}</p>
+
+              <p>{description.slice(0, 200) + '...'}</p>
+              <div className='text-[15px] mb-2'>
+                <p><strong>Condition:</strong> {condition}</p>
+                <p><strong>Location:</strong> {location}</p>
+                <p><strong>Purchase:</strong> {year_of_purchase}</p>
+                <p><strong>Used Time:</strong> {year_of_use}</p>
+                <p><strong>Contact No.:</strong> {phone_number}</p>
               </div>
-              <div className='grid grid-cols-2'>
-                <p>Price: ${resell_price}</p>
-                <p>Original Price: ${original_price}</p>
-              </div>
-              <p>{description.slice(0, 100)}</p>
               <div className="card-actions justify-start">
-                {<label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn btn-primary' disabled={!books?.availablity}>{books?.availablity ? 'Buy Now' : 'Booked'}</label>}
+                {<label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0' disabled={!books?.availablity}>{books?.availablity ? 'Buy Now' : 'Booked'}</label>}
                 <button onClick={() => handleReportItem(books)} className='btn btn-warning' disabled={report}><MdReport className='inline-block mr-1' /> Report to Admin</button>
               </div>
             </div>
-            <figure className='w-auto rounded-xl p-4'><img className='rounded-lg md:w-[430px] md:h-[220px]' src={photo} alt="Movie" /></figure>
+            <figure className='w-auto rounded-xl pr-0 md:pr-6'><img className='rounded-lg md:w-[300px] md:h-[350px]' src={photo} alt="Movie" /></figure>
           </div>
         </div>
       }
