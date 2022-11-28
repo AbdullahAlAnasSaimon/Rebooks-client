@@ -4,12 +4,13 @@ import toast from 'react-hot-toast';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import Loading from '../../Shared/Loading/Loading';
 
-const AllSellers = () => {
+const ReportedItems = () => {
+
   const [deleting, setDeleting] = useState(null);
-  const { data: allSeller, isLoading, refetch } = useQuery({
+  const { data: reportedItems, isLoading, refetch } = useQuery({
     queryKey: ['my-products'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/users/all-seller', {
+      const res = await fetch('http://localhost:5000/reported-product', {
         headers: {
           authorization: `bearer ${localStorage.getItem('accessToken')}`
         }
@@ -23,65 +24,49 @@ const AllSellers = () => {
     return <Loading />
   }
 
-  const handleVerifySeller = seller => {
-    console.log(seller.email);
-    fetch(`http://localhost:5000/users/${seller.email}`,{
-      method: 'PUT',
+  const closeModal = () =>{
+    setDeleting(null);
+  }
+
+  const handleDelete = item =>{
+    fetch(`http://localhost:5000/products/${item._id}`, {
+      method: 'DELETE',
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`
       }
     })
     .then(res => res.json())
     .then(data =>{
-      if(data.modifiedCount > 0){
-        toast.success(`${seller.name} is now verified seller`);
-      }
-    })
-  }
-
-  const closeModal = () =>{
-    setDeleting(null);
-  }
-
-  const handleDelete = seller =>{
-    fetch(`http://localhost:5000/users/${seller._id}`, {
-      method: 'DELETE',
-      // headers: {
-      //   authorization: `bearer ${localStorage.getItem('accessToken')}`
-      // }
-    })
-    .then(res => res.json())
-    .then(data =>{
       if(data.deletedCount > 0){
-        toast.success(`${seller.name} Deleted Successfully`);
+        toast.success(`${item.name} Deleted Successfully`);
         refetch();
       }
     })
   }
 
+  refetch();
+
   return (
     <div>
-      <h2 className='text-2xl text-center md:text-left font-bold my-5'>All sellers</h2>
+      <h2 className='text-2xl font-bold text-center md:text-left my-5'>Reported Items</h2>
       <div>
         <div className="overflow-x-auto">
           <table className="table w-full">
             <thead>
               <tr>
                 <th></th>
+                <th>Product Id</th>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Verification</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {
-                allSeller.map((seller, i) => <tr key={seller._id}>
+                reportedItems.map((product, i) => <tr key={product._id}>
                   <th>{i + 1}</th>
-                  <td>{seller.name}</td>
-                  <td>{seller.email}</td>
-                  <td>{seller.verified ? <p><small className='font-semibold bg-blue-300 px-4 py-1 rounded-full'>Verified</small></p> : <button onClick={() => handleVerifySeller(seller)} className='btn btn-primary btn-xs'>Verify</button>}</td>
-                  <td><label onClick={() => setDeleting(seller)} htmlFor="my-modal" className='btn btn-error btn-xs'>Delete</label></td>
+                  <th>{product._id}</th>
+                  <td>{product.name}</td>
+                  <td><label onClick={() => setDeleting(product)} htmlFor="my-modal" className='btn btn-error btn-xs'>Delete</label></td>
                 </tr>)
               }
             </tbody>
@@ -100,4 +85,4 @@ const AllSellers = () => {
   );
 };
 
-export default AllSellers;
+export default ReportedItems;

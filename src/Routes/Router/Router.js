@@ -7,6 +7,7 @@ import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import MyProfile from "../../Pages/Dashboard/MyProfile/MyProfile";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
+import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
 import LogIn from "../../Pages/LogIn/LogIn";
 import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 import Products from "../../Pages/Shop/Products/Products";
@@ -83,6 +84,10 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/all-buyers',
         element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
+      },
+      {
+        path: '/dashboard/reported-items',
+        element: <AdminRoute><ReportedItems></ReportedItems></AdminRoute>
       },
       {
         path: '/dashboard/add-a-product',
