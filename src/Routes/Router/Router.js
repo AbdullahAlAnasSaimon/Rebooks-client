@@ -56,7 +56,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/category/:id',
-        loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`,{
+        loader: ({params}) => fetch(`https://ebooks-server.vercel.app/category/${params.id}`,{
           headers: {
             authorization: `bearer ${localStorage.getItem('accessToken')}`
           }
@@ -79,7 +79,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/dashboard/payment/:id',
-        loader: ({params}) => fetch(`http://localhost:5000/my-orders/${params.id}`),
+        loader: ({params}) => fetch(`https://ebooks-server.vercel.app/my-orders/${params.id}`),
         element: <BuyerRoute><Payment></Payment></BuyerRoute>
       },
       {

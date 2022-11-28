@@ -1,16 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import useTitle from '../../../Hooks/useTitle';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import Loading from '../../Shared/Loading/Loading';
 
 const AllBuyers = () => {
+  useTitle('All buyers');
   const [deleting, setDeleting] = useState(null);
 
   const { data: allBuyer, isLoading, refetch } = useQuery({
     queryKey: ['my-products'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/users/all-buyer', {
+      const res = await fetch('https://ebooks-server.vercel.app/users/all-buyer', {
         headers: {
           authorization: `bearer ${localStorage.getItem('accessToken')}`
         }
@@ -29,7 +31,7 @@ const AllBuyers = () => {
   }
 
   const handleDelete = buyer =>{
-    fetch(`http://localhost:5000/users/${buyer._id}`, {
+    fetch(`https://ebooks-server.vercel.app/users/${buyer._id}`, {
       method: 'DELETE',
       // headers: {
       //   authorization: `bearer ${localStorage.getItem('accessToken')}`

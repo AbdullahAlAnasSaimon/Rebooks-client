@@ -11,7 +11,7 @@ const SingleBook = ({ books, setBookData }) => {
 
 
   const handleReportItem = books => {
-    fetch(`http://localhost:5000/reported-product/${books._id}`, {
+    fetch(`https://ebooks-server.vercel.app/reported-product/${books._id}`, {
       method: 'PUT',
     })
       .then(res => res.json())
@@ -29,8 +29,7 @@ const SingleBook = ({ books, setBookData }) => {
         !paid && <div className='my-8 w-11/12 md:w-full mx-auto md:mx-0'>
           <div className="card card-side shadow-lg flex-col-reverse md:flex-row bg-blue-100/30 border-2 border-blue-100 md:mr-5">
             <div className="card-body md:w-10/12">
-              <h2 className="card-title">{name}</h2>
-              <div className='flex'>
+              <div className='flex bg-blue-100 w-[270px] p-2 rounded-lg overflow-hidden'>
                 <div className="avatar placeholder">
                   <div className="rounded-full w-10">
                     {seller_photo ? <img src={seller_photo} alt="" /> : <FaUserCircle className='text-[40px] text-gray-700' />}
@@ -41,6 +40,7 @@ const SingleBook = ({ books, setBookData }) => {
                   <p className='text-[12px]'>{posting_time.slice(0, 24)}</p>
                 </div>
               </div>
+              <h2 className="card-title text-3xl font-bold">{name}</h2>
               <div className=''>
                 <p className='text-2xl font-semibold text-blue-500'> ${resell_price} <span><del className='text-red-300 text-[16px]'>${original_price}</del></span></p>
               </div>

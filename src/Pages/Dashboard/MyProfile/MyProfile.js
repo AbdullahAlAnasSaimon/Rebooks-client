@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
+import useTitle from '../../../Hooks/useTitle';
 
 const MyProfile = () => {
+  useTitle('Dashboard');
   const {user} = useContext(AuthContext);
   return (
     <div>

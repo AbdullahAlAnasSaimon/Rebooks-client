@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
+import useTitle from '../../../Hooks/useTitle';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import Loading from '../../Shared/Loading/Loading';
 
@@ -9,6 +10,7 @@ import Loading from '../../Shared/Loading/Loading';
 
 
 const MyProducts = () => {
+  useTitle('My Products');
   const { user } = useContext(AuthContext);
   const [deletingProduct, setDeletingProduct] = useState(null);
 
@@ -34,7 +36,7 @@ const MyProducts = () => {
   }
 
   const handleDelete = modalData =>{
-    fetch(`http://localhost:5000/products/${modalData._id}`, {
+    fetch(`https://ebooks-server.vercel.app/products/${modalData._id}`, {
       method: 'DELETE',
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -50,7 +52,7 @@ const MyProducts = () => {
   }
 
   const handleAdvertise = advertise =>{
-    fetch(`http://localhost:5000/products/${advertise}`, {
+    fetch(`https://ebooks-server.vercel.app/products/${advertise}`, {
       method: 'PUT',
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`

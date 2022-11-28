@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
+import useTitle from '../../Hooks/useTitle';
 import Loading from '../Shared/Loading/Loading';
 import BookingModal from './SingleBook/BookingModal/BookingModal';
 import SingleBook from './SingleBook/SingleBook';
 
 const Shop = () => {
   const [bookData, setBookData] = useState({});
-  
+  useTitle('Shop')
   const { data: allBooks, isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {

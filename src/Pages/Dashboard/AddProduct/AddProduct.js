@@ -4,9 +4,11 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
+import useTitle from '../../../Hooks/useTitle';
 import Loading from '../../Shared/Loading/Loading';
 
 const AddProduct = () => {
+  useTitle('Add A Product');
   const { register, formState: { errors }, handleSubmit } = useForm();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ const AddProduct = () => {
   const {data: verified} = useQuery({
     queryKey: ['verify'],
     queryFn: async () =>{
-      const res = await fetch(`http://localhost:5000/users?email=${user?.email}`)
+      const res = await fetch(`https://ebooks-server.vercel.app/users?email=${user?.email}`)
       const data = await res.json()
       return data;
     }
@@ -71,7 +73,7 @@ const AddProduct = () => {
             description: data.description
           };
 
-          fetch('http://localhost:5000/products', {
+          fetch('https://ebooks-server.vercel.app/products', {
             method: 'POST',
             headers: {
               'content-type': 'application/json',

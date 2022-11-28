@@ -3,16 +3,18 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
+import useTitle from '../../../Hooks/useTitle';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import Loading from '../../Shared/Loading/Loading';
 
 const MyOrders = () => {
+  useTitle('My Orders');
   const [deleting, setDeleting] = useState(null);
   const { user } = useContext(AuthContext);
   const { data: myBooking, isloading, refetch } = useQuery({
     queryKey: ['todos'],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/my-orders?email=${user?.email}`);
+      const res = await fetch(`https://ebooks-server.vercel.app/my-orders?email=${user?.email}`);
       const data = await res.json();
       return data;
     }
@@ -27,7 +29,7 @@ const MyOrders = () => {
   }
 
   const handleDelete = product => {
-    fetch(`http://localhost:5000/my-orders/${product._id}`, {
+    fetch(`https://ebooks-server.vercel.app/my-orders/${product._id}`, {
       method: 'DELETE',
       // headers: {
       //   authorization: `bearer ${localStorage.getItem('accessToken')}`

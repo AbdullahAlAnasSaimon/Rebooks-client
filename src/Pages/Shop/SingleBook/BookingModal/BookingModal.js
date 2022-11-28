@@ -24,7 +24,7 @@ const BookingModal = ({ bookData }) => {
       user_number: userNumber,
       user_location: userLocation
     }
-    fetch('http://localhost:5000/my-orders',{
+    fetch('https://ebooks-server.vercel.app/my-orders',{
       method: 'POST',
       headers: {
         'content-type': 'application/json'
