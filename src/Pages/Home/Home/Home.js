@@ -5,6 +5,7 @@ import Advertise from '../../Advertise/Advertise';
 import Loading from '../../Shared/Loading/Loading';
 import Banner from '../Banner/Banner';
 import CategorySection from './CategorySection/CategorySection';
+import ExtraSection from './ExtraSection/ExtraSection';
 
 const Home = () => {
   useTitle('Home');
@@ -37,6 +38,7 @@ const Home = () => {
         </div>
       </div>
       <Advertise></Advertise>
+      <ExtraSection></ExtraSection>
     </div>
   );
 };
