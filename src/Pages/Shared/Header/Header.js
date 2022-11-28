@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
 import logo from '../../../images/logo/logo.png';
 import { FaUserCircle } from 'react-icons/fa';
+import {FiLogOut} from 'react-icons/fi';
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -81,18 +82,12 @@ const Header = () => {
                 </div>
               </label>
               <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                <li>
-                  <Link className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </Link>
-                </li>
                 {user?.uid && <li className='md:hidden'><Link to='/dashboard'>Dashboard</Link></li>}
-                <li><button onClick={handleLogOut}>Log Out</button></li>
+                <li><button onClick={handleLogOut}> <FiLogOut/> Log Out</button></li>
               </ul>
             </div>
             :
-            <Link to='/login' className="btn btn-sm">Log In</Link>
+            <Link to='/login' className="btn btn-sm"> Log In</Link>
           }
         </div>
       </div>
