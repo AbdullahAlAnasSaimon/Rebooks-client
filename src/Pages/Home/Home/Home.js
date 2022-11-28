@@ -4,8 +4,9 @@ import useTitle from '../../../Hooks/useTitle';
 import Advertise from '../../Advertise/Advertise';
 import Loading from '../../Shared/Loading/Loading';
 import Banner from '../Banner/Banner';
-import CategorySection from './CategorySection/CategorySection';
-import ExtraSection from './ExtraSection/ExtraSection';
+import CategorySection from '../CategorySection/CategorySection';
+import ExtraSection from '../ExtraSection/ExtraSection';
+import HeroDown from '../HeroDown/HeroDown';
 
 const Home = () => {
   useTitle('Home');
@@ -39,6 +40,7 @@ const Home = () => {
       </div>
       <Advertise></Advertise>
       <ExtraSection></ExtraSection>
+      <HeroDown></HeroDown>
     </div>
   );
 };
