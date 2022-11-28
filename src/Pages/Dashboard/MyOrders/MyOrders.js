@@ -47,7 +47,7 @@ const MyOrders = () => {
 
   return (
     <div>
-      <h2>My orders</h2>
+      <h2 className='text-3xl font-bold my-5 text-center md:text-left'>My orders</h2>
       <div>
         <div className="overflow-x-auto">
           <table className="table w-full">
