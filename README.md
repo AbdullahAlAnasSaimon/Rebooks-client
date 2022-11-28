@@ -2,6 +2,9 @@
 
 Live Site Link: [ReBooks](https://rebooks-f1684.web.app/)
 
+admin email: tom@mas.com
+admin password: 123456@A
+
 ## Details:
 
 ReBooks is a online resell book platform. The book data load by categories. Where Sellers can sell their used books with a good price. Sellers can advertise their product. Buyers can book product and can pay with a real stripe payment system. Admin can controll sellers and buyers.
