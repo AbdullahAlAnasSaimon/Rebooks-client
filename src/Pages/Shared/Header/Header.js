@@ -25,14 +25,14 @@ const Header = () => {
       if (prevScrollpos > currentScrollPos) {
         document.getElementById("navbar").style.top = "0px";
       } else {
-        document.getElementById("navbar").style.top = "-70px";
+        document.getElementById("navbar").style.top = "-68px";
       }
       prevScrollpos = currentScrollPos;
     }
   }, []);
 
   return (
-    <div className='bg-blue-200/60 backdrop-blur border-b-2 fixed top-0 w-full z-[9999] duration-300 border-blue-200' id='navbar'>
+    <div className='bg-blue-200/60 backdrop-blur border-b-2 sticky top-0 w-full z-[9999] duration-300 border-blue-200' id='navbar'>
       <div className="navbar w-full md:w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
