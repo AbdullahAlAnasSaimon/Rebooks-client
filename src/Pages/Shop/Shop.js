@@ -6,7 +6,7 @@ import BookingModal from './SingleBook/BookingModal/BookingModal';
 import SingleBook from './SingleBook/SingleBook';
 
 const Shop = () => {
-  const [bookData, setBookData] = useState({});
+  const [bookData, setBookData] = useState(null);
   useTitle('Shop')
   const { data: allBooks, isLoading } = useQuery({
     queryKey: ['products'],
@@ -37,9 +37,12 @@ const Shop = () => {
         }
       </div>
 
-      <BookingModal
-        bookData={bookData}
-      ></BookingModal>
+      {
+        bookData && (<BookingModal
+          bookData={bookData}
+          setBookData={setBookData}
+        ></BookingModal>
+        )}
     </div>
   );
 };

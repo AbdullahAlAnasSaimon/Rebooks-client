@@ -5,7 +5,7 @@ import SingleBook from '../SingleBook/SingleBook';
 
 
 const Products = () => {
-  const [bookData, setBookData] = useState({});
+  const [bookData, setBookData] = useState(null);
   const products = useLoaderData();
 
   return (
@@ -23,9 +23,12 @@ const Products = () => {
                 ></SingleBook>)
               }
             </div>
-            <BookingModal
-              bookData={bookData}
-            ></BookingModal>
+            {
+              bookData && (<BookingModal
+                bookData={bookData}
+                setBookData={setBookData}
+              ></BookingModal>
+              )}
           </>
           : <p className='flex justify-center items-center min-h-[400px] text-3xl text-gray-300 font-bold'>No Data Found</p>
       }

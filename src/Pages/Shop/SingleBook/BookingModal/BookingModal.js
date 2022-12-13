@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../Context/AuthProvider/AuthPrivider';
 
-const BookingModal = ({ bookData }) => {
+const BookingModal = ({ bookData, setBookData }) => {
   const { user } = useContext(AuthContext);
   const { name, resell_price, photo } = bookData;
 
@@ -25,6 +25,8 @@ const BookingModal = ({ bookData }) => {
       user_number: userNumber,
       user_location: userLocation
     }
+
+    
     fetch('https://ebooks-server.vercel.app/my-orders',{
       method: 'POST',
       headers: {
@@ -34,13 +36,11 @@ const BookingModal = ({ bookData }) => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       if(data.acknowledged){
+        setBookData(null);
         toast.success(`${name} booked Successfully`);
       }
     })
-
-    console.log(productBooking);
   }
 
   return (

@@ -38,7 +38,7 @@ const MyOrders = () => {
       .then(res => res.json())
       .then(data => {
         if (data.deletedCount > 0) {
-          toast.success(`${product.name} Deleted Successfully`);
+          toast.success(`${product.product_name} Deleted Successfully`);
           refetch();
         }
       })
