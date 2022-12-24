@@ -11,9 +11,9 @@ const MyProfile = () => {
   useTitle('Dashboard');
   const {user} = useContext(AuthContext);
 
-  const [isAdmin, isAdminLoading] = useAdmin(user?.email);
-  const [isSeller, isSellerLoading] = useSeller(user?.email);
-  const [isBuyer, isBuyerLoading] = useBuyer(user?.email);
+  const [isAdminLoading] = useAdmin(user?.email);
+  const [isSellerLoading] = useSeller(user?.email);
+  const [isBuyerLoading] = useBuyer(user?.email);
 
   if(isAdminLoading || isSellerLoading || isBuyerLoading){
     return <Loading/>

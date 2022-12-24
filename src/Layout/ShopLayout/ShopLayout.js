@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import Footer from '../../Pages/Shared/Footer/Footer';
 import Header from '../../Pages/Shared/Header/Header';
+import Loading from '../../Pages/Shared/Loading/Loading';
 
 const ShopLayout = () => {
   const [categories, setCategories] = useState([]);
@@ -15,6 +16,10 @@ const ShopLayout = () => {
       setIsLoading(false);
     });
   }, [])
+
+  if(isLoading){
+    return <Loading/>
+  }
   
 
   return (
@@ -33,7 +38,7 @@ const ShopLayout = () => {
             <ul className="menu p-4 w-80 bg-base-100 lg:bg-base-100/0 text-base-content">
               {/* <!-- Sidebar content here --> */}
               <li><Link to={`/category`}>All Books</Link></li>
-              { 
+              { !isLoading &&
                 categories.map(category => <li key={category._id}><Link to={`/category/${category?._id}`}>{category?.category_name}</Link></li>)
               }
             </ul>
