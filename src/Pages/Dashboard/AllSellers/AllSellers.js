@@ -21,10 +21,7 @@ const AllSellers = () => {
     }
   })
 
-  if (isLoading) {
-    return <Loading />
-  }
-
+  
   const handleVerifySeller = seller => {
     console.log(seller.email);
     fetch(`https://ebooks-server.vercel.app/users/${seller.email}`,{
@@ -44,13 +41,13 @@ const AllSellers = () => {
   const closeModal = () =>{
     setDeleting(null);
   }
-
+  
   const handleDelete = seller =>{
     fetch(`https://ebooks-server.vercel.app/users/${seller._id}`, {
       method: 'DELETE',
       // headers: {
-      //   authorization: `bearer ${localStorage.getItem('accessToken')}`
-      // }
+        //   authorization: `bearer ${localStorage.getItem('accessToken')}`
+        // }
     })
     .then(res => res.json())
     .then(data =>{
@@ -60,7 +57,11 @@ const AllSellers = () => {
       }
     })
   }
-
+  
+  if (isLoading) {
+    return <Loading />
+  }
+  
   return (
     <div>
       <h2 className='text-2xl text-center md:text-left font-bold my-5'>All sellers</h2>

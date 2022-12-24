@@ -21,10 +21,7 @@ const ReportedItems = () => {
     }
   })
 
-  if (isLoading) {
-    return <Loading />
-  }
-
+  
   const closeModal = () =>{
     setDeleting(null);
   }
@@ -44,6 +41,11 @@ const ReportedItems = () => {
       }
     })
   }
+  
+  
+  if (isLoading) {
+    return <Loading />
+  }
 
   refetch();
 
@@ -62,7 +64,7 @@ const ReportedItems = () => {
               </tr>
             </thead>
             <tbody>
-              {
+              { reportedItems && 
                 reportedItems.map((product, i) => <tr key={product._id}>
                   <th>{i + 1}</th>
                   <th>{product._id}</th>

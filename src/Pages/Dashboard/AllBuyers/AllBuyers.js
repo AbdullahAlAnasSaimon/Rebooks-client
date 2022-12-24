@@ -22,10 +22,7 @@ const AllBuyers = () => {
     }
   })
 
-  if (isLoading) {
-    return <Loading />
-  }
-
+  
   const closeModal = () =>{
     setDeleting(null);
   }
@@ -46,6 +43,9 @@ const AllBuyers = () => {
     })
   }
 
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <div>
