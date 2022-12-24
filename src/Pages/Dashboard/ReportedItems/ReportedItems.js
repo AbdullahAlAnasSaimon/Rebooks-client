@@ -9,7 +9,7 @@ const ReportedItems = () => {
   useTitle('Reported Items');
   const [deleting, setDeleting] = useState(null);
   const { data: reportedItems, isLoading, refetch } = useQuery({
-    queryKey: ['my-products'],
+    queryKey: ['reported'],
     queryFn: async () => {
       const res = await fetch('https://ebooks-server.vercel.app/reported-product', {
         headers: {
@@ -42,12 +42,12 @@ const ReportedItems = () => {
     })
   }
   
+  refetch();
   
   if (isLoading) {
     return <Loading />
   }
 
-  refetch();
 
   return (
     <div>

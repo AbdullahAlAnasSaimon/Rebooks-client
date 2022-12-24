@@ -1,11 +1,24 @@
 import React, { useContext } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
+import useAdmin from '../../../Hooks/useAdmin';
+import useBuyer from '../../../Hooks/useBuyer';
+import useSeller from '../../../Hooks/useSeller';
 import useTitle from '../../../Hooks/useTitle';
+import Loading from '../../Shared/Loading/Loading';
 
 const MyProfile = () => {
   useTitle('Dashboard');
   const {user} = useContext(AuthContext);
+
+  const [isAdmin, isAdminLoading] = useAdmin(user?.email);
+  const [isSeller, isSellerLoading] = useSeller(user?.email);
+  const [isBuyer, isBuyerLoading] = useBuyer(user?.email);
+
+  if(isAdminLoading || isSellerLoading || isBuyerLoading){
+    return <Loading/>
+  }
+
   return (
     <div>
       <h2 className='text-2xl my-5 text-center md:text-left font-bold'>My profile</h2>
