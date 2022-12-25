@@ -8,7 +8,7 @@ import SingleBook from './SingleBook/SingleBook';
 const Shop = () => {
   const [bookData, setBookData] = useState(null);
   useTitle('Shop')
-  const { data: allBooks, isLoading } = useQuery({
+  const { data: allBooks, isLoading, refetch } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
       const res = await fetch('https://ebooks-server.vercel.app/products', {
@@ -24,6 +24,8 @@ const Shop = () => {
   if (isLoading) {
     return <Loading />
   }
+
+  refetch();
 
   return (
     <div>

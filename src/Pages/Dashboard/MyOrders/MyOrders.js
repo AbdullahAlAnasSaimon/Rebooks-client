@@ -29,11 +29,9 @@ const MyOrders = () => {
   }
 
   const handleDelete = product => {
+    console.log(product);
     fetch(`https://ebooks-server.vercel.app/my-orders/${product._id}`, {
-      method: 'DELETE',
-      // headers: {
-      //   authorization: `bearer ${localStorage.getItem('accessToken')}`
-      // }
+      method: 'DELETE'
     })
       .then(res => res.json())
       .then(data => {
@@ -49,7 +47,8 @@ const MyOrders = () => {
     <div>
       <h2 className='text-3xl font-bold my-5 text-center md:text-left'>My orders</h2>
       <div>
-        <div className="overflow-x-auto">
+        {
+          myBooking?.length > 0 ? <div className="overflow-x-auto">
           <table className="table w-full">
             <thead>
               <tr>
@@ -63,38 +62,39 @@ const MyOrders = () => {
             <tbody>
               {
                 myBooking?.map((booked, i) =>
-                  <tr key={booked._id}>
-                    <th>{i + 1}</th>
-                    <td>
-                      <div className="flex items-center space-x-3">
-                        <div className="avatar">
-                          <div className="mask mask-squircle w-12 h-12">
-                            <img src={booked.product_photo} alt="Avatar Tailwind CSS Component" />
-                          </div>
-                        </div>
-                        <div>
-                          <div className="font-bold">{booked.product_name}</div>
+                <tr key={booked._id}>
+                  <th>{i + 1}</th>
+                  <td>
+                    <div className="flex items-center space-x-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
+                          <img src={booked.product_photo} alt="Avatar Tailwind CSS Component" />
                         </div>
                       </div>
-                    </td>
-                    <td>$ {booked.product_price}</td>
-                    <td>
-                      {
-                        booked.product_price && !booked.paid && <Link to={`/dashboard/payment/${booked._id}`}>
-                          <button className='btn btn-primary btn-xs'>Pay</button>
-                        </Link>
-                      }
-                      {
-                        booked.product_price && booked.paid && <span className='bg-blue-200 px-3 py-1 rounded-full'><small>Paid</small></span>
-                      }
-                    </td>
-                    <td><label onClick={() => setDeleting(booked)} htmlFor="my-modal" className='btn btn-error btn-xs'>Delete</label></td>
-                  </tr>
-                )
+                      <div>
+                        <div className="font-bold">{booked.product_name}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>$ {booked.product_price}</td>
+                  <td>
+                    {
+                      booked.product_price && !booked.paid && <Link to={`/dashboard/payment/${booked._id}`}>
+                        <button className='btn btn-primary btn-xs'>Pay</button>
+                      </Link>
+                    }
+                    {
+                      booked.product_price && booked.paid && <span className='bg-blue-200 px-3 py-1 rounded-full'><small>Paid</small></span>
+                    }
+                  </td>
+                  <td><label onClick={() => setDeleting(booked)} htmlFor="my-modal" className='btn btn-error btn-xs'>Delete</label></td>
+                </tr>
+              )
               }
             </tbody>
           </table>
-        </div>
+        </div> : <p className='mt-20 text-center font-bold text-2xl text-gray-200'>No Data Found</p>
+        }
       </div>
       {deleting && <ConfirmationModal
         title={`Are you sure? You want to delete?`}
