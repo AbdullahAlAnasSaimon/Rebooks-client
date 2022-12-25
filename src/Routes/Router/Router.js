@@ -10,6 +10,7 @@ import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import MyProfile from "../../Pages/Dashboard/MyProfile/MyProfile";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
 import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
+import SoldProducts from "../../Pages/Dashboard/SoldProducts/SoldProducts";
 import Wishlist from "../../Pages/Dashboard/Wishlist/Wishlist";
 import LogIn from "../../Pages/LogIn/LogIn";
 import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
@@ -101,7 +102,8 @@ export const router = createBrowserRouter([
         element: <AdminRoute><ReportedItems></ReportedItems></AdminRoute>
       },
       {
-        path: '/dashboard/sold-products'
+        path: '/dashboard/sold-products',
+        element: <AdminRoute><SoldProducts></SoldProducts></AdminRoute>
       },
       {
         path: '/dashboard/add-a-product',
