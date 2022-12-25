@@ -19,7 +19,6 @@ const SignUp = () => {
 
 
   const handleSignUp = data => {
-    console.log(data);
     createUser(data.email, data.password)
       .then(result => {
         // const user = result.user;
@@ -59,7 +58,6 @@ const SignUp = () => {
     googleSignIn(googleProvider)
       .then(result => {
         const user = result.user;
-        console.log(user);
         saveUserToDb(user?.displayName, user?.email)
         toast.success('Log In Successfull');
       })

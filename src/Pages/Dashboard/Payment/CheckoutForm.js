@@ -85,7 +85,6 @@ const CheckoutForm = ({ product }) => {
       })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         toast.success('Payment Successfull');
         setTransactionId(paymentIntent.id);
       })

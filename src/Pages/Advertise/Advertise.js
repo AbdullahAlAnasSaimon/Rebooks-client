@@ -12,7 +12,6 @@ const Advertise = () => {
     queryFn: async () => {
       const res = await fetch('https://ebooks-server.vercel.app/advertise');
       const data = await res.json();
-      console.log(data);
       return data;
     }
   })
@@ -21,7 +20,6 @@ const Advertise = () => {
     return <Loading />
   }
 
-  console.log(advertised);
 
   return (
     <>

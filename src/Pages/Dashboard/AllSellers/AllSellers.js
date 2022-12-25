@@ -23,7 +23,6 @@ const AllSellers = () => {
 
   
   const handleVerifySeller = seller => {
-    console.log(seller.email);
     fetch(`https://ebooks-server.vercel.app/users/${seller.email}`,{
       method: 'PUT',
       headers: {
