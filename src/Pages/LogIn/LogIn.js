@@ -64,7 +64,7 @@ const LogIn = () => {
   return (
     <div className='flex justify-center items-center my-10'>
       <div className="w-96 p-7 border-2 border-blue-300 rounded-lg">
-        <h2 className='text-3xl font-bold'>Log In</h2>
+        <h2 className='text-3xl font-bold mb-5'>Log In</h2>
         <form onSubmit={handleSubmit(handleLogIn)}>
           <div className="form-control w-full">
             <label className="label"><span className="label-text">Email</span> </label>
@@ -79,7 +79,7 @@ const LogIn = () => {
             {errors.password && <p className="text-red-500"><small>*{errors?.password?.message}</small></p>}
             <label className="label"><span className="label-text">Forget Password</span></label>
           </div>
-          <input className='btn btn-primary w-full my-3' type="submit" value='Log In' />
+          <input className='btn bg-blue-500 hover:bg-blue-600 text-white border-0 lg:mr-5 w-full my-5' type="submit" value='Log In' />
         </form>
         <p className='text-center'>New to ReBooks? <Link to='/signup' className='text-blue-500 underline'>Create An Account</Link></p>
         <div className="divider">OR</div>
