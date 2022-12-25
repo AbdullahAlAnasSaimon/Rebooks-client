@@ -61,10 +61,10 @@ const Header = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
-            <li><NavLink to='/' className='rounded-full mx-1'>Home</NavLink></li>
-            {user?.uid && <li><NavLink to='/dashboard' className={({isActive}) => isActive ? 'active rounded-full mx-1' : 'undefined rounded-full mx-1'}>Dashboard</NavLink></li>}
-            <li tabIndex={0}><NavLink to='/category' className='rounded-full mx-1'>Book Store</NavLink></li>
-            <li><NavLink to='/blog' className='rounded-full mx-1'>Blog</NavLink></li>
+            <li><NavLink to='/' className='rounded-full mx-1 h-[35px] my-auto'>Home</NavLink></li>
+            {user?.uid && <li><NavLink to='/dashboard' className={({isActive}) => isActive ? 'active rounded-full mx-1 h-[35px] my-auto' : 'undefined rounded-full mx-1 h-[35px] my-auto'}>Dashboard</NavLink></li>}
+            <li tabIndex={0}><NavLink to='/category' className='rounded-full mx-1 h-[35px] my-auto'>Book Store</NavLink></li>
+            <li><NavLink to='/blog' className='rounded-full mx-1 h-[35px] my-auto'>Blog</NavLink></li>
             {/* <li>
               <label className="swap swap-rotate rounded-full btn-circle">
                 <input type="checkbox" />
