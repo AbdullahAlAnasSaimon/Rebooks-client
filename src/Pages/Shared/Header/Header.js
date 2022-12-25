@@ -42,6 +42,7 @@ const Header = () => {
             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
               <li><Link to='/'>Home</Link></li>
               <li tabIndex={0}><Link to='/category'>Book Store</Link></li>
+              {user?.uid && <li className='md:hidden'><Link to='/dashboard'>Dashboard</Link></li>}
               <li><Link to='/blog'>Blog</Link></li>
               {/* <li>
                 <label className="swap swap-rotate rounded-full btn-circle">
@@ -59,10 +60,10 @@ const Header = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
-            <li><Link to='/' className='rounded-full mx-2'>Home</Link></li>
-            {user?.uid && <li><Link to='/dashboard' className='rounded-full mx-2'>Dashboard</Link></li>}
-            <li tabIndex={0}><Link to='/category' className='rounded-full mx-2'>Book Store</Link></li>
-            <li><Link to='/blog' className='rounded-full mx-2'>Blog</Link></li>
+            <li><Link to='/' className='rounded-full mx-1'>Home</Link></li>
+            {user?.uid && <li><Link to='/dashboard' className='rounded-full mx-1'>Dashboard</Link></li>}
+            <li tabIndex={0}><Link to='/category' className='rounded-full mx-1'>Book Store</Link></li>
+            <li><Link to='/blog' className='rounded-full mx-1'>Blog</Link></li>
             {/* <li>
               <label className="swap swap-rotate rounded-full btn-circle">
                 <input type="checkbox" />
@@ -87,7 +88,7 @@ const Header = () => {
                 </div>
               </label>
               <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                {user?.uid && <li className='md:hidden'><Link to='/dashboard'>Dashboard</Link></li>}
+                
                 <li><button onClick={handleLogOut}> <FiLogOut /> Log Out</button></li>
               </ul>
             </div>

@@ -25,8 +25,8 @@ const SingleBook = ({ books, setBookData }) => {
   return (
     <>
       {
-        !paid && <div className='my-8 w-11/12 md:w-full mx-auto md:mx-0'>
-          <div className="card card-side shadow-lg flex-col-reverse md:flex-row bg-blue-100/30 border-2 border-blue-100 md:mr-5">
+        !paid && <div className='my-8 w-full'>
+          <div className="card card-side shadow-lg flex-col-reverse md:flex-row bg-blue-100/30 border-2 border-blue-100">
             <div className="card-body md:w-10/12">
               <div className='flex bg-blue-100 w-[270px] p-2 rounded-lg overflow-hidden'>
                 <div className="avatar placeholder">
@@ -57,7 +57,7 @@ const SingleBook = ({ books, setBookData }) => {
                 <button onClick={() => handleReportItem(books)} className='btn btn-warning' disabled={report}><MdReport className='inline-block mr-1' /> Report to Admin</button>
               </div>
             </div>
-            <figure className='w-auto rounded-xl pr-0 md:pr-6'><img className='rounded-lg md:w-[300px] md:h-[350px]' src={photo} alt="Movie" /></figure>
+            <figure className='w-auto rounded-xl pr-0 md:pr-6'><img className='rounded-lg md:!max-w-[300px] m-5 md:m-0' src={photo} alt="Movie" /></figure>
           </div>
         </div>
       }
