@@ -41,7 +41,7 @@ const SingleBook = ({ books, setBookData }) => {
               </div>
               <h2 className="card-title text-3xl font-bold">{name}</h2>
               <div className=''>
-                <p className='text-2xl font-semibold text-blue-500'> ${resell_price} <span><del className='text-red-300 text-[16px]'>${original_price}</del></span></p>
+                <p className='text-2xl font-semibold text-blue-500'> ${resell_price} <span><del className='text-red-400 text-[16px]'>${original_price}</del></span></p>
               </div>
 
               <p>{description.slice(0, 200) + '...'}</p>

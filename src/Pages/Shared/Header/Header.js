@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
 import logo from '../../../images/logo/logo.png';
 import { FaUserCircle } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
 import { useEffect } from 'react';
+import './Header.css';
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -40,10 +41,10 @@ const Header = () => {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </label>
             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-              <li><Link to='/'>Home</Link></li>
-              <li tabIndex={0}><Link to='/category'>Book Store</Link></li>
-              {user?.uid && <li className='md:hidden'><Link to='/dashboard'>Dashboard</Link></li>}
-              <li><Link to='/blog'>Blog</Link></li>
+              <li><NavLink to='/'>Home</NavLink></li>
+              <li tabIndex={0}><NavLink to='/category'>Book Store</NavLink></li>
+              {user?.uid && <li className='md:hidden'><NavLink to='/dashboard'>Dashboard</NavLink></li>}
+              <li><NavLink to='/blog'>Blog</NavLink></li>
               {/* <li>
                 <label className="swap swap-rotate rounded-full btn-circle">
                   <input type="checkbox" />
@@ -60,10 +61,10 @@ const Header = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
-            <li><Link to='/' className='rounded-full mx-1'>Home</Link></li>
-            {user?.uid && <li><Link to='/dashboard' className='rounded-full mx-1'>Dashboard</Link></li>}
-            <li tabIndex={0}><Link to='/category' className='rounded-full mx-1'>Book Store</Link></li>
-            <li><Link to='/blog' className='rounded-full mx-1'>Blog</Link></li>
+            <li><NavLink to='/' className='rounded-full mx-1'>Home</NavLink></li>
+            {user?.uid && <li><NavLink to='/dashboard' className={({isActive}) => isActive ? 'active rounded-full mx-1' : 'undefined rounded-full mx-1'}>Dashboard</NavLink></li>}
+            <li tabIndex={0}><NavLink to='/category' className='rounded-full mx-1'>Book Store</NavLink></li>
+            <li><NavLink to='/blog' className='rounded-full mx-1'>Blog</NavLink></li>
             {/* <li>
               <label className="swap swap-rotate rounded-full btn-circle">
                 <input type="checkbox" />
@@ -93,7 +94,7 @@ const Header = () => {
               </ul>
             </div>
             :
-            <Link to='/login' className="btn btn-sm"> Log In</Link>
+            <NavLink to='/login' className="btn btn-sm"> Log In</NavLink>
           }
         </div>
       </div>

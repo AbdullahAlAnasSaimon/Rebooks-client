@@ -25,7 +25,7 @@ const ShopLayout = () => {
   return (
       <div>
         <Header></Header>
-        <div className="drawer drawer-mobile h-auto relative">
+        <div className="drawer drawer-mobile h-auto relative md:w-[95%] mx-auto">
           <input id="category-drawer" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content z-0">
             {/* <!-- Page content here --> */}
