@@ -1,8 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import Loading from '../../Shared/Loading/Loading';
 
 const SoldProducts = () => {
+  const [deletingProduct, setDeletingProduct] = useState(null);
 
   const {data: soldItems = [], isLoading, refetch} = useQuery({
     queryKey: ['solditem'],
@@ -17,7 +20,26 @@ const SoldProducts = () => {
     return <Loading/>
   }
 
-  console.log(soldItems);
+  const closeModal = () =>{
+    setDeletingProduct(null);
+  }
+
+  const handleDelete = modalData =>{
+    fetch(`https://ebooks-server.vercel.app/products/${modalData._id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: `bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+    .then(res => res.json())
+    .then(data =>{
+      if(data.deletedCount > 0){
+        toast.success(`${modalData.name} Deleted Successfully`);
+        refetch();
+      }
+    })
+  }
+
 
   return (
     <div>
@@ -33,7 +55,7 @@ const SoldProducts = () => {
                 <th>Product</th>
                 <th>Info</th>
                 <th>Sell Price</th>
-                <th>Availablity</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -63,7 +85,7 @@ const SoldProducts = () => {
                   <td>{item?.resell_price} $</td>
                   <td>{item?.paid ? <p><small className='bg-red-200 py-1 px-4 rounded-full'>Sold</small></p> : <p><small className='bg-blue-200 py-1 px-2 rounded-full'>Available</small></p> } </td>
                   <th>
-                    <label htmlFor="my-modal" className="btn btn-error btn-xs w-full">Delete</label>
+                    <label onClick={() => setDeletingProduct(item)} htmlFor="my-modal" className="btn btn-error btn-xs w-full">Delete</label>
                   </th>
                 </tr>)
               }
@@ -72,6 +94,14 @@ const SoldProducts = () => {
         </div> : <p className='mt-20 text-center font-bold text-2xl text-gray-200'>No Data Found</p>
         }
       </div>
+      {deletingProduct && <ConfirmationModal
+      title={`Are you sure? You want to delete?`}
+      message={`If you delete once ${deletingProduct.name} It can not be undone.`}
+      buttonName={`Delete`}
+      closeModal={closeModal}
+      handleDelete={handleDelete}
+      modalData={deletingProduct}
+      ></ConfirmationModal>}
     </div>
   );
 };
