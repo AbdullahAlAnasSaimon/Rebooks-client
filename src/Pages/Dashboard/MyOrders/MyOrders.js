@@ -30,7 +30,7 @@ const MyOrders = () => {
 
   const handleDelete = product => {
     console.log(product);
-    fetch(`https://ebooks-server.vercel.app/my-orders/${product._id}`, {
+    fetch(`https://ebooks-server.vercel.app/my-orders/${product?._id}`, {
       method: 'DELETE'
     })
       .then(res => res.json())
