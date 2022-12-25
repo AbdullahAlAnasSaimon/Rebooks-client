@@ -35,7 +35,10 @@ const DashboardLayout = () => {
               {/* <!-- admin route --> */}
               <li><Link to='/dashboard'>Dashboard</Link></li>
               {
-                isBuyer && <li><Link to='/dashboard/my-orders'>My Orders</Link></li>
+                isBuyer && <>
+                <li><Link to='/dashboard/my-orders'>My Orders</Link></li>
+                <li><Link to='/dashboard/wishlist'>Wish List</Link></li>
+                </>
               }
               {
                 isAdmin && <>
