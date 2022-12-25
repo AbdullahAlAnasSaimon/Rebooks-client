@@ -32,7 +32,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className='bg-blue-200/60 backdrop-blur border-b-2 sticky top-0 w-full z-[9999] duration-300 border-blue-200' id='navbar'>
+    <div className='bg-blue-400/60 backdrop-blur-lg border-b-2 sticky top-0 w-full z-[9999] duration-300 border-blue-200' id='navbar'>
       <div className="navbar w-full md:w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -41,7 +41,7 @@ const Header = () => {
             </label>
             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
               <li><Link to='/'>Home</Link></li>
-              <li tabIndex={0}><Link to='/category'>Shop</Link></li>
+              <li tabIndex={0}><Link to='/category'>Book Store</Link></li>
               <li><Link to='/blog'>Blog</Link></li>
               {/* <li>
                 <label className="swap swap-rotate rounded-full btn-circle">
@@ -61,7 +61,7 @@ const Header = () => {
           <ul className="menu menu-horizontal p-0">
             <li><Link to='/' className='rounded-full mx-2'>Home</Link></li>
             {user?.uid && <li><Link to='/dashboard' className='rounded-full mx-2'>Dashboard</Link></li>}
-            <li tabIndex={0}><Link to='/category' className='rounded-full mx-2'>Shop</Link></li>
+            <li tabIndex={0}><Link to='/category' className='rounded-full mx-2'>Book Store</Link></li>
             <li><Link to='/blog' className='rounded-full mx-2'>Blog</Link></li>
             {/* <li>
               <label className="swap swap-rotate rounded-full btn-circle">

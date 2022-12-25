@@ -60,7 +60,7 @@ const BookingModal = ({ bookData, setBookData }) => {
                   <input name='usernumber' type="text" placeholder="Type your phone number" className="input input-bordered w-full my-3" required/>
                   <input name='userlocation' type="text" placeholder="Type your location" className="input input-bordered w-full my-3" required/>
                   <div className="modal-action">
-                    <button type='submit' htmlFor="booking-modal" className="btn w-full">Submit</button>
+                    <button type='submit' htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0 w-full'>Submit</button>
                   </div>
                 </form>
               </div>

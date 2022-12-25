@@ -116,7 +116,7 @@ const SignUp = () => {
             {errors.photoURL && <p className="text-red-500"><small>*{errors?.photoURL?.message}</small></p>}
           </div>
 
-          <input className='btn bg-blue-500 hover:bg-blue-600 text-white border-0 lg:mr-5 w-full my-5' type="submit" value='Sign Up' />
+          <input className='btn bg-blue-500 hover:bg-blue-600 text-white border-0 w-full my-5' type="submit" value='Sign Up' />
         </form>
         <p className='text-center'>Already Have an Account? <Link to='/login' className='text-blue-500 underline'>Log In</Link></p>
         <div className="divider">OR</div>
