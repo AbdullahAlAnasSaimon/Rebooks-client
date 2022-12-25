@@ -59,10 +59,10 @@ const Header = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
-            <li><Link to='/' className='rounded-full'>Home</Link></li>
-            {user?.uid && <li><Link to='/dashboard' className='rounded-full'>Dashboard</Link></li>}
-            <li tabIndex={0}><Link to='/category' className='rounded-full'>Shop</Link></li>
-            <li><Link to='/blog' className='rounded-full'>Blog</Link></li>
+            <li><Link to='/' className='rounded-full mx-2'>Home</Link></li>
+            {user?.uid && <li><Link to='/dashboard' className='rounded-full mx-2'>Dashboard</Link></li>}
+            <li tabIndex={0}><Link to='/category' className='rounded-full mx-2'>Shop</Link></li>
+            <li><Link to='/blog' className='rounded-full mx-2'>Blog</Link></li>
             {/* <li>
               <label className="swap swap-rotate rounded-full btn-circle">
                 <input type="checkbox" />

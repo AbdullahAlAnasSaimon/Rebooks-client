@@ -22,13 +22,13 @@ const MyProfile = () => {
   return (
     <div>
       <h2 className='text-2xl my-5 text-center md:text-left font-bold'>My profile</h2>
-      <div className='w-11/12 mx-auto mt-10 flex flex-col md:flex-row justify-around'>
+      <div className='w-11/12 mx-auto mt-10 grid grid-cols-1 md:grid-cols-3'>
         <div className="avatar block">
           <div className="w-24 md:w-48 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 mx-auto md:mx-0">
           {user?.photoURL ? <img src={user?.photoURL} alt='' /> : <FaUserCircle className='text-[96px] md:text-[192px] text-gray-700' />}
           </div>
         </div>
-        <div className='mt-10 w-8/12 md:w-auto mx-auto md:mx-0'>
+        <div className='mt-10 md:mt-0 w-8/12 md:w-auto mx-auto md:mx-0 md:col-span-2'>
           <label className='label' htmlFor="">Name</label>
         <input type="text" className="input input-bordered w-full max-w-xs" defaultValue={user?.displayName} readOnly/>
           <label className='label' htmlFor="">Account Type</label>
