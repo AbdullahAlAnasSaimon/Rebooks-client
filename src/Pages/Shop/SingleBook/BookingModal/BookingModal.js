@@ -7,7 +7,7 @@ const BookingModal = ({ bookData, setBookData }) => {
   const { user } = useContext(AuthContext);
   const { name, resell_price, photo } = bookData;
   const [processing, setProcessing] = useState(false);
-console.log(bookData);
+  
   const handleBooking = event => {
     event.preventDefault();
     const form = event.target;
@@ -30,7 +30,7 @@ console.log(bookData);
     setProcessing(true);
 
 
-    fetch('https://ebooks-server.vercel.app/my-orders', {
+    fetch('http://localhost:5000/my-orders', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

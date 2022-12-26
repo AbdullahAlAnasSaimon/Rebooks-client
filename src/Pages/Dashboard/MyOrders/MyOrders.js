@@ -29,7 +29,7 @@ const MyOrders = () => {
   }
 
   const handleDelete = product => {
-    fetch(`https://ebooks-server.vercel.app/my-orders/${product?._id}`, {
+    fetch(`http://localhost:5000/my-orders/${product?._id}`, {
       method: 'DELETE'
     })
       .then(res => res.json())
@@ -44,7 +44,7 @@ const MyOrders = () => {
 
   return (
     <div>
-      <h2 className='text-3xl font-bold my-5 text-center md:text-left'>My orders</h2>
+      <h2 className='text-2xl font-bold my-5 text-center md:text-left'>My orders</h2>
       <div>
         {
           myBooking?.length > 0 ? <div className="overflow-x-auto">

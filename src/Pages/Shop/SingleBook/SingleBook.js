@@ -18,6 +18,48 @@ const SingleBook = ({ books, setBookData }) => {
     return <Loading />
   }
 
+  const handleAddToWishList = data =>{
+    // console.log(data);
+    const confirmation = window.confirm(`Are you sure you want to add ${name} to wishlist`);
+    if(confirmation){
+      const {_id, name, category_name, categoryId, availablity, photo, resell_price, seller_name} = data;
+    const wishListData = {
+      productID: _id,
+      product_name: name,
+      add_to_wishlist: true,
+      category_name,
+      categoryId,
+      availablity,
+      photo,
+      resell_price,
+      seller_name,
+      user_email: user?.email,
+      paid: false
+    }
+    
+    fetch('http://localhost:5000/add-to-wishlist', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${localStorage.getItem('accessToken')}`
+      },
+      body: JSON.stringify(wishListData)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.acknowledged){
+        toast.success('Added To wishlist Successfully');
+      }
+      else{
+        toast.error(data.message);
+      }
+    })
+    }
+    else{
+      return;
+    }
+  }
+
   const handleReportItem = books => {
     if (user) {
       const confirmReport = window.confirm(`Are You sure you want to report ${books?.name}?`);
@@ -75,7 +117,7 @@ const SingleBook = ({ books, setBookData }) => {
               </div>
               <div className="card-actions justify-start">
                 {<label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0' disabled={!books?.availablity || isAdmin || isSeller}>{books?.availablity ? 'Book Now' : 'Unavailable'}</label>}
-                <button className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl' disabled={isAdmin || isSeller}><AiFillHeart/></button>
+                <button onClick={() => handleAddToWishList(books)} className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl' disabled={isAdmin || isSeller}><AiFillHeart/></button>
                 <button onClick={() => handleReportItem(books)} className='btn btn-warning' disabled={isAdmin || isSeller}><MdReport className='inline-block mr-1' /> Report</button>
               </div>
             </div>
