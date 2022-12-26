@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import {  FaUserCircle } from 'react-icons/fa';
 import {  MdReport, MdVerified } from 'react-icons/md';
-// import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
+import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
+import useAdmin from '../../../Hooks/useAdmin';
+import useSeller from '../../../Hooks/useSeller';
 
 const SingleBook = ({ books, setBookData }) => {
-  // const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const [isAdmin] = useAdmin(user?.email);
+  const [isSeller] = useSeller(user?.email);
   const { name, seller_photo, verified, report, condition, description, location, original_price, phone_number, photo, posting_time, resell_price, seller_name, year_of_purchase, year_of_use, paid } = books;
 
 
   const handleReportItem = books => {
-    fetch(`https://ebooks-server.vercel.app/reported-product/${books._id}`, {
-      method: 'PUT',
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.modifiedCount > 0) {
-          toast.success('Reported Successfully');
-        }
+    const confirmReport = window.confirm(`Are You sure you want to report ${books?.name}?`);
+    console.log(confirmReport);
+    if(confirmReport){
+      fetch(`https://ebooks-server.vercel.app/reported-product/${books?._id}`, {
+        method: 'PUT',
       })
+        .then(res => res.json())
+        .then(data => {
+          if (data.modifiedCount > 0) {
+            toast.success('Reported Successfully');
+          }
+        })
+    }
+    else{
+      return;
+    }
   }
 
 
@@ -53,8 +64,8 @@ const SingleBook = ({ books, setBookData }) => {
                 <p><strong>Contact No.:</strong> {phone_number}</p>
               </div>
               <div className="card-actions justify-start">
-                {<label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0' disabled={!books?.availablity}>{books?.availablity ? 'Book Now' : 'Unavailable'}</label>}
-                <button onClick={() => handleReportItem(books)} className='btn btn-warning' disabled={report}><MdReport className='inline-block mr-1' /> Report to Admin</button>
+                {<label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0' disabled={!books?.availablity || isAdmin || isSeller}>{books?.availablity ? 'Book Now' : 'Unavailable'}</label>}
+                <button onClick={() => handleReportItem(books)} className='btn btn-warning' disabled={isAdmin || isSeller}><MdReport className='inline-block mr-1'/> Report</button>
               </div>
             </div>
             <figure className='w-auto rounded-xl pr-0 md:pr-6'><img className='rounded-lg md:!max-w-[300px] m-5 md:m-0' src={photo} alt="Movie" /></figure>

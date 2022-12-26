@@ -11,7 +11,7 @@ const SignUp = () => {
   useTitle('Sign Up');
   const { register, formState: { errors }, handleSubmit } = useForm();
   const { createUser, updateUser, googleSignIn, logOut } = useContext(AuthContext);
-
+  const [processing, setProcessing] = useState(false);
   const [createdUserEmail, setCreatedUserEmail] = useState('');
   const [token] = useToken(createdUserEmail);
   const navigate = useNavigate();
@@ -19,9 +19,11 @@ const SignUp = () => {
 
 
   const handleSignUp = data => {
+    setProcessing(true);
     createUser(data.email, data.password)
       .then(result => {
         // const user = result.user;
+        setProcessing(false);
         logOut();
         toast.success('Account Created Successfully');
         const userProfile = {
@@ -36,7 +38,10 @@ const SignUp = () => {
         })
         .catch(err => toast.error(err.message))
       })
-      .catch(err => toast.error(err.message));
+      .catch(err => {
+        toast.error(err.message);
+        setProcessing(false);
+      });
   }
 
   const saveUserToDb = (name, email, role = 'Buyer') =>{
@@ -116,7 +121,13 @@ const SignUp = () => {
             {errors.photoURL && <p className="text-red-500"><small>*{errors?.photoURL?.message}</small></p>}
           </div>
 
-          <input className='btn bg-blue-500 hover:bg-blue-600 text-white border-0 w-full my-5' type="submit" value='Sign Up' />
+          <button className='btn bg-blue-500 hover:bg-blue-600 text-white border-0 w-full my-5' type="submit" disabled={processing}>{processing ? <>
+            <svg class="animate-spin -ml-1 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="#8d8df0" stroke-width="4"></circle>
+              <path class="opacity-75" fill="rgb(59, 130, 246)" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </> : 'Sign Up'}</button>
+
         </form>
         <p className='text-center'>Already Have an Account? <Link to='/login' className='text-blue-500 underline'>Log In</Link></p>
         <div className="divider">OR</div>

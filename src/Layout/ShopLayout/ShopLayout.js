@@ -35,11 +35,11 @@ const ShopLayout = () => {
           </div>
           <div className="drawer-side z-1 md:sticky md:top-[0rem] md:max-h-[100vh - 1rem] md:overflow-y-scroll md:inline-block">
             <label htmlFor="category-drawer" className="drawer-overlay"></label>
-            <ul className="menu p-4 w-80 bg-base-100 lg:bg-base-100/0 text-base-content">
+            <ul className="menu p-4 w-72 bg-base-100 lg:bg-base-100/0 text-base-content">
               {/* <!-- Sidebar content here --> */}
-              <li><Link to={`/category`}>All Books</Link></li>
+              <li><Link className='md:h-[35px] md:my-1' to={`/category`}>All Books</Link></li>
               { !isLoading &&
-                categories.map(category => <li key={category._id}><NavLink to={`/category/${category?._id}`}>{category?.category_name}</NavLink></li>)
+                categories.map(category => <li key={category._id}><NavLink className='md:h-[35px] md:my-1' to={`/category/${category?._id}`}>{category?.category_name}</NavLink></li>)
               }
             </ul>
           </div>
