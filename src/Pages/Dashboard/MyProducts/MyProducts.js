@@ -71,7 +71,8 @@ const MyProducts = () => {
     <div>
       <h2 className='text-2xl my-5 font-bold text-center md:text-left'>My products</h2>
       <div>
-        <div className="overflow-x-auto w-full">
+        {
+          myProducts.length > 0 ? <div className="overflow-x-auto w-full">
           <table className="table w-full">
             {/* <!-- head --> */}
             <thead>
@@ -118,7 +119,8 @@ const MyProducts = () => {
               }
             </tbody>
           </table>
-        </div>
+        </div> : <p className='mt-20 text-center font-bold text-2xl text-gray-200'>No Data Found</p>
+        }
       </div>
       {deletingProduct && <ConfirmationModal
       title={`Are you sure? You want to delete?`}

@@ -4,6 +4,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import Footer from '../../Pages/Shared/Footer/Footer';
 import Header from '../../Pages/Shared/Header/Header';
 import Loading from '../../Pages/Shared/Loading/Loading';
+import dashIcon from '../../images/icons/dashboard-5481.svg';
 
 const ShopLayout = () => {
   const [categories, setCategories] = useState([]);
@@ -25,6 +26,11 @@ const ShopLayout = () => {
   return (
       <div>
         <Header></Header>
+        <div className='w-11/12 mx-auto'>
+        <label htmlFor="category-drawer" tabIndex={1} className={`btn btn-ghost btn-square lg:hidden float-right`}>
+          <img src={dashIcon} alt="" className='w-6 h-6'/>
+        </label>
+      </div>
         <div className="drawer drawer-mobile h-auto relative md:w-[95%] mx-auto">
           <input id="category-drawer" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content z-0">
