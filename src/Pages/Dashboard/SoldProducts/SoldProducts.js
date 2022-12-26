@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import useTitle from '../../../Hooks/useTitle';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import Loading from '../../Shared/Loading/Loading';
 
 const SoldProducts = () => {
+  useTitle('Sold Products')
   const [deletingProduct, setDeletingProduct] = useState(null);
 
   const {data: soldItems = [], isLoading, refetch} = useQuery({
