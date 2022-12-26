@@ -13,6 +13,24 @@ const AdvertiseBook = ({ books, setBookData }) => {
   const [isSeller] = useSeller(user?.email);
   const { name, category_name, seller_photo, verified, condition, description, location, original_price, phone_number, photo, posting_time, resell_price, seller_name, year_of_purchase, year_of_use, paid } = books;
 
+  const handleAddToWishList = data =>{
+    // console.log(data);
+    const {_id, name, category_name, categoryId, availablity, photo, resell_price, seller_name} = data;
+    const wishListData = {
+      productID: _id,
+      product_name: name,
+      add_to_wishlist: true,
+      category_name,
+      categoryId,
+      availablity,
+      photo,
+      resell_price,
+      seller_name,
+      user_name: user?.displayName,
+      user_email: user?.email,
+    }
+    console.log(wishListData);
+  }
 
   const handleReportItem = books => {
     if(user){
@@ -71,7 +89,7 @@ const AdvertiseBook = ({ books, setBookData }) => {
               </div>
               <div className="card-actions justify-start">
                 {<label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0' disabled={!books?.availablity || isAdmin || isSeller}>{books?.availablity ? 'Book Now' : 'Unavailable'}</label>}
-                <button className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl' disabled={isAdmin || isSeller}><AiFillHeart/></button>
+                <button onClick={() => handleAddToWishList(books)} className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl' disabled={isAdmin || isSeller}><AiFillHeart/></button>
                 <button onClick={() => handleReportItem(books)} className='btn btn-warning' disabled={isAdmin || isSeller}><MdReport className='inline-block mr-1'/> Report</button>
               </div>
             </div>
