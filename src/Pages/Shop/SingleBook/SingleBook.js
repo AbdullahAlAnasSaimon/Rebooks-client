@@ -6,17 +6,13 @@ import { MdReport, MdVerified } from 'react-icons/md';
 import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
 import useAdmin from '../../../Hooks/useAdmin';
 import useSeller from '../../../Hooks/useSeller';
-import Loading from '../../Shared/Loading/Loading';
 
 const SingleBook = ({ books, setBookData }) => {
   const { user } = useContext(AuthContext);
-  const [isAdmin, isAdminLoading] = useAdmin(user?.email);
-  const [isSeller, isSellerLoading] = useSeller(user?.email);
+  const [isAdmin] = useAdmin(user?.email);
+  const [isSeller] = useSeller(user?.email);
   const { name, category_name, seller_photo, verified, condition, description, location, original_price, phone_number, photo, posting_time, resell_price, seller_name, year_of_purchase, year_of_use, paid } = books;
 
-  if (isAdminLoading || isSellerLoading) {
-    return <Loading />
-  }
 
   const handleAddToWishList = data =>{
     // console.log(data);

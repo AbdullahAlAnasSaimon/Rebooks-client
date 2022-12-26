@@ -84,7 +84,7 @@ const Wishlist = () => {
                     </td>
                     <td>{mylist?.seller_name}</td>
                     <td>{mylist?.resell_price} $</td>
-                    <td>{(!mylist?.availablity && <p><small className='bg-red-300 py-1 px-2 rounded-full'>Unavailable</small></p>) || (mylist?.paid ? <p><small className='bg-red-200 py-1 px-4 rounded-full'>Sold</small></p> : <p><small className='bg-blue-200 py-1 px-2 rounded-full'>Available</small></p>)} </td>
+                    <td>{mylist?.availablity ? <p><small className='bg-blue-200 py-1 px-2 rounded-full'>Available</small></p> : <p><small className='bg-red-300 py-1 px-2 rounded-full'>Unavailable</small></p>} </td>
                     <th>
                       <Link to={`/category/${mylist?.categoryId}`} className="btn bg-blue-500 hover:bg-blue-600 duration-300 border-0 btn-xs mb-2 w-full" disabled={!mylist?.availablity}>Buy Now</Link>
                       <br />
