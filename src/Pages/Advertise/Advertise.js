@@ -5,7 +5,7 @@ import BookingModal from '../Shop/SingleBook/BookingModal/BookingModal';
 import AdvertiseBook from './AdvertiseBook/AdvertiseBook';
 
 const Advertise = () => {
-  const [bookData, setBookeData] = useState({});
+  const [bookData, setBookData] = useState(null);
 
   const { data: advertised, isLoading } = useQuery({
     queryKey: ['advertise'],
@@ -30,15 +30,18 @@ const Advertise = () => {
           <div className='w-11/12 mx-auto'>
             {
               advertised.map(books => <AdvertiseBook
-              key={books._id}
-              books={books}
-              setBookData={setBookeData}
+                key={books._id}
+                books={books}
+                setBookData={setBookData}
               ></AdvertiseBook>)
             }
           </div>
-          <BookingModal
-          bookData={bookData}
-          ></BookingModal>
+          {
+            bookData && (<BookingModal
+              bookData={bookData}
+              setBookData={setBookData}
+            ></BookingModal>
+            )}
         </div>
       }
     </>

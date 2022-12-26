@@ -7,7 +7,7 @@ const BookingModal = ({ bookData, setBookData }) => {
   const { user } = useContext(AuthContext);
   const { name, resell_price, photo } = bookData;
   const [processing, setProcessing] = useState(false);
-
+console.log(bookData);
   const handleBooking = event => {
     event.preventDefault();
     const form = event.target;
@@ -21,6 +21,7 @@ const BookingModal = ({ bookData, setBookData }) => {
       product_name: name,
       product_photo: photo,
       product_price: resell_price,
+      seller_email: bookData?.seller_email,
       user_name: userName,
       user_email: userEmail,
       user_number: userNumber,
