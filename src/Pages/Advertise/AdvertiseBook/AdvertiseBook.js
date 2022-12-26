@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { AiFillHeart } from 'react-icons/ai';
 import {  FaUserCircle } from 'react-icons/fa';
 import {  MdReport, MdVerified } from 'react-icons/md';
 import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
@@ -70,6 +71,7 @@ const AdvertiseBook = ({ books, setBookData }) => {
               </div>
               <div className="card-actions justify-start">
                 {<label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0' disabled={!books?.availablity || isAdmin || isSeller}>{books?.availablity ? 'Book Now' : 'Unavailable'}</label>}
+                <button className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl' disabled={isAdmin || isSeller}><AiFillHeart/></button>
                 <button onClick={() => handleReportItem(books)} className='btn btn-warning' disabled={isAdmin || isSeller}><MdReport className='inline-block mr-1'/> Report</button>
               </div>
             </div>

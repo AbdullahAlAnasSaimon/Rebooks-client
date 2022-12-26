@@ -56,7 +56,7 @@ const SingleBook = ({ books, setBookData }) => {
                 </div>
                 <div className='ml-2'>
                   <p className='font-semibold'>{seller_name} {verified && <MdVerified className='inline-block text-blue-600' />}</p>
-                  <p className='text-[12px]'>{posting_time.slice(0, 24)}</p>
+                  <p className='text-[12px]'>{posting_time.slice(0, 21)}</p>
                 </div>
               </div>
               <h2 className="card-title text-3xl font-bold">{name}</h2>
@@ -75,7 +75,7 @@ const SingleBook = ({ books, setBookData }) => {
               </div>
               <div className="card-actions justify-start">
                 {<label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0' disabled={!books?.availablity || isAdmin || isSeller}>{books?.availablity ? 'Book Now' : 'Unavailable'}</label>}
-                <button className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl'><AiFillHeart/></button>
+                <button className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl' disabled={isAdmin || isSeller}><AiFillHeart/></button>
                 <button onClick={() => handleReportItem(books)} className='btn btn-warning' disabled={isAdmin || isSeller}><MdReport className='inline-block mr-1' /> Report</button>
               </div>
             </div>

@@ -56,7 +56,7 @@ const DashboardLayout = () => {
               }
               {
                 isSeller && <>
-                  <li><NavLink className='md:h-[35px] md:my-1' to='/dashboard/add-a-product'>Add A Product</NavLink></li>
+                  <li><NavLink className='md:h-[35px] md:my-1' to='/dashboard/add-a-product'>Add Product</NavLink></li>
                   <li><NavLink className='md:h-[35px] md:my-1' to='/dashboard/my-products'>My Products</NavLink></li>
                   <li><NavLink className='md:h-[35px] md:my-1' to='/dashboard/my-buyers'>My Buyers</NavLink></li>
                 </>

@@ -182,7 +182,7 @@ const AddProduct = () => {
             {errors.description && <p className="text-red-500"><small>*{errors?.description?.message}</small></p>}
           </div>
 
-          <input className='btn btn-primary w-full my-5' type="submit" value='Add A Product' />
+          <input className='btn bg-blue-500 hover:bg-blue-600 duration-300 border-0 w-full my-5' type="submit" value='Add A Product' />
         </form>
       </div>
     </div>
