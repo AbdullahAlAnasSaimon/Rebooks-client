@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import toast from 'react-hot-toast';
 import {  FaUserCircle } from 'react-icons/fa';
 import {  MdReport, MdVerified } from 'react-icons/md';
-import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
+// import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
 
 const SingleBook = ({ books, setBookData }) => {
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
   const { name, seller_photo, verified, report, condition, description, location, original_price, phone_number, photo, posting_time, resell_price, seller_name, year_of_purchase, year_of_use, paid } = books;
 
 

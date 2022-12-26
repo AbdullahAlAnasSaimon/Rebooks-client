@@ -10,7 +10,7 @@ const SoldProducts = () => {
   const {data: soldItems = [], isLoading, refetch} = useQuery({
     queryKey: ['solditem'],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/sold-products`);
+      const res = await fetch(`https://ebooks-server.vercel.app/sold-products`);
       const data = res.json();
       return data;
     }

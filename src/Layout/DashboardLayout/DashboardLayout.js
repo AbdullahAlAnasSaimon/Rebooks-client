@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
 import useAdmin from '../../Hooks/useAdmin';
 import useBuyer from '../../Hooks/useBuyer';
@@ -36,23 +36,23 @@ const DashboardLayout = () => {
               <li><Link to='/dashboard'>Dashboard</Link></li>
               {
                 isBuyer && <>
-                <li><Link to='/dashboard/my-orders'>My Orders</Link></li>
-                <li><Link to='/dashboard/wishlist'>Wish List</Link></li>
+                <li><NavLink to='/dashboard/my-orders'>My Orders</NavLink></li>
+                <li><NavLink to='/dashboard/wishlist'>Wish List</NavLink></li>
                 </>
               }
               {
                 isAdmin && <>
-                  <li><Link to='/dashboard/all-sellers'>All Sellers</Link></li>
-                  <li><Link to='/dashboard/all-buyers'>All Buyers</Link></li>
-                  <li><Link to='/dashboard/sold-products'>Sold Products</Link></li>
-                  <li><Link to='/dashboard/reported-items'>Reported Items</Link></li>
+                  <li><NavLink to='/dashboard/all-sellers'>All Sellers</NavLink></li>
+                  <li><NavLink to='/dashboard/all-buyers'>All Buyers</NavLink></li>
+                  <li><NavLink to='/dashboard/sold-products'>Sold Products</NavLink></li>
+                  <li><NavLink to='/dashboard/reported-items'>Reported Items</NavLink></li>
                 </>
               }
               {
                 isSeller && <>
-                  <li><Link to='/dashboard/add-a-product'>Add A Product</Link></li>
-                  <li><Link to='/dashboard/my-products'>My Products</Link></li>
-                  <li><Link to='/dashboard/my-buyers'>My Buyers</Link></li>
+                  <li><NavLink to='/dashboard/add-a-product'>Add A Product</NavLink></li>
+                  <li><NavLink to='/dashboard/my-products'>My Products</NavLink></li>
+                  <li><NavLink to='/dashboard/my-buyers'>My Buyers</NavLink></li>
                 </>
               }
             </ul>

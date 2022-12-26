@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import Footer from '../../Pages/Shared/Footer/Footer';
 import Header from '../../Pages/Shared/Header/Header';
 import Loading from '../../Pages/Shared/Loading/Loading';
@@ -39,7 +39,7 @@ const ShopLayout = () => {
               {/* <!-- Sidebar content here --> */}
               <li><Link to={`/category`}>All Books</Link></li>
               { !isLoading &&
-                categories.map(category => <li key={category._id}><Link to={`/category/${category?._id}`}>{category?.category_name}</Link></li>)
+                categories.map(category => <li key={category._id}><NavLink to={`/category/${category?._id}`}>{category?.category_name}</NavLink></li>)
               }
             </ul>
           </div>
