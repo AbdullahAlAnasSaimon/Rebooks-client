@@ -15,7 +15,9 @@ const AdvertiseBook = ({ books, setBookData }) => {
 
   const handleAddToWishList = data =>{
     // console.log(data);
-    const {_id, name, category_name, categoryId, availablity, photo, resell_price, seller_name} = data;
+    const confirmation = window.confirm(`Are you sure you want to add ${name} to wishlist`);
+    if(confirmation){
+      const {_id, name, category_name, categoryId, availablity, photo, resell_price, seller_name} = data;
     const wishListData = {
       productID: _id,
       product_name: name,
@@ -26,10 +28,31 @@ const AdvertiseBook = ({ books, setBookData }) => {
       photo,
       resell_price,
       seller_name,
-      user_name: user?.displayName,
       user_email: user?.email,
+      paid: false
     }
-    console.log(wishListData);
+    
+    fetch('http://localhost:5000/add-to-wishlist', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${localStorage.getItem('accessToken')}`
+      },
+      body: JSON.stringify(wishListData)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.acknowledged){
+        toast.success('Added To wishlist Successfully');
+      }
+      else{
+        toast.error(data.message);
+      }
+    })
+    }
+    else{
+      return;
+    }
   }
 
   const handleReportItem = books => {
