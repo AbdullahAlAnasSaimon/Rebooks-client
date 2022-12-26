@@ -6,7 +6,7 @@ const Blog = () => {
   return (
     <div>
       <div className='w-11/12 md:w-10/12 mx-auto'>
-        <div className='p-10 my-10 rounded-xl'>
+        <div className='p-5 my-5 rounded-xl'>
           <h2 className='text-2xl font-bold mb-5'>1. What are the different ways to manage a state in a React application?</h2>
           <p className='mb-3'>There are four main types of state you need to properly manage in your React apps:
             1. Local state
@@ -44,18 +44,18 @@ const Blog = () => {
             In many cases, a lot of major parts of our application rely upon accessing URL state. Try to imagine building a blog without being able to fetch a post based off of its slug or id that is located in the URL!</p>
         </div>
 
-        <div className='p-10 my-10 rounded-xl'>
+        <div className='p-5 my-5 rounded-xl'>
           <h2 className='text-2xl font-bold mb-5'>2. How does prototypical inheritance work?</h2>
           <p className='mb-3'>The Prototypal Inheritance is a feature in javascript used to add methods and properties in objects. It is a method by which an object can inherit the properties and methods of another object. Traditionally, in order to get and set the [[Prototype]] of an object, we use Object.getPrototypeOf and Object.setPrototypeOf. Nowadays, in modern language, it is being set using __proto__.</p>
         </div>
 
-        <div className='p-10 my-10 rounded-xl'>
+        <div className='p-5 my-5 rounded-xl'>
           <h2 className='text-2xl font-bold mb-5'>3. What is a unit test? Why should we write unit tests?</h2>
           <p className='mb-3'>In computer programming, unit testing is a software testing method by which individual units of source code—sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures—are tested to determine whether they are fit for use.</p>
           <p className='mb-3'>They enable you to catch bugs early in the development process. Automated unit tests help a great deal with regression testing. They detect code smells in your codebase. For example, if you're having a hard time writing unit tests for a piece of code, it might be a sign that your function is too complex.</p>
         </div>
 
-        <div className='p-10 my-10 rounded-xl'>
+        <div className='p-5 my-5 rounded-xl'>
           <h2 className='text-2xl font-bold mb-5'>4. React vs. Angular vs. Vue?</h2>
           <p className='mb-3'>Angular, developed by Google, was first released in 2010, making it the oldest of the lot. It is a TypeScript-based JavaScript framework. A substantial shift occurred in 2016 on the release of Angular 2 (and the dropping of the “JS” from the original name – AngularJS). Angular 2+ is known as just Angular. Although AngularJS (version 1) still gets updates, we will focus the discussion on Angular.</p>
 
