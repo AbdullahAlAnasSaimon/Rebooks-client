@@ -1,14 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useContext } from 'react';
-import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
-import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import Loading from '../../Shared/Loading/Loading';
 
 const MyBuyers = () => {
   const { user } = useContext(AuthContext);
-  const [deleting, setDeleting] = useState(null);
+  // const [deleting, setDeleting] = useState(null);
   const { data: myBuyers, isLoading, refetch } = useQuery({
     queryKey: ['myBuyer'],
     queryFn: async () => {
@@ -18,15 +16,6 @@ const MyBuyers = () => {
     }
   })
 
-  console.log(myBuyers);
-
-  const closeModal = () =>{
-    setDeleting(null);
-  }
-
-  const handleBuyerReport = buyerData =>{
-    
-  }
 
 
   if (isLoading) {
@@ -37,7 +26,8 @@ const MyBuyers = () => {
     <div>
       <h2 className='text-2xl my-5 text-center md:text-left font-bold'>My Buyers</h2>
       <div>
-        <div className="overflow-x-auto">
+        {
+          myBuyers.length > 0 ? <div className="overflow-x-auto">
           <table className="table w-full">
             <thead>
               <tr>
@@ -57,12 +47,13 @@ const MyBuyers = () => {
                   <td>{myBuyer.user_email}</td>
                   <td>{myBuyer.user_location}</td>
                   <td>{myBuyer.user_number}</td>
-                  <td><label onClick={() => setDeleting(myBuyer)} className='btn btn-warning btn-xs'>Report</label></td>
+                  <td><label className='btn btn-warning btn-xs'>Report</label></td>
                 </tr>)
               }
             </tbody>
           </table>
-        </div>
+        </div> : <p className='mt-20 text-center font-bold text-2xl text-gray-200'>No Data Found</p>
+        }
       </div>
     </div>
   );
