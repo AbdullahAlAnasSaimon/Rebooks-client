@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import Loading from '../Shared/Loading/Loading';
 import BookingModal from '../Shop/SingleBook/BookingModal/BookingModal';
-import SingleBook from '../Shop/SingleBook/SingleBook';
+import AdvertiseBook from './AdvertiseBook/AdvertiseBook';
 
 const Advertise = () => {
   const [bookData, setBookeData] = useState({});
@@ -29,11 +29,11 @@ const Advertise = () => {
           <h2 className='text-3xl font-bold text-center my-10'>Advertise</h2>
           <div className='w-11/12 mx-auto'>
             {
-              advertised.map(books => <SingleBook
+              advertised.map(books => <AdvertiseBook
               key={books._id}
               books={books}
               setBookData={setBookeData}
-              ></SingleBook>)
+              ></AdvertiseBook>)
             }
           </div>
           <BookingModal
