@@ -15,7 +15,7 @@ const Wishlist = () => {
   const { data: myWishList = [], isLoading, refetch } = useQuery({
     queryKey: ['wishlist'],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/add-to-wishlist?email=${user?.email}`);
+      const res = await fetch(`https://ebooks-server.vercel.app/add-to-wishlist?email=${user?.email}`);
       const data = res.json();
       return data;
     }
@@ -31,7 +31,7 @@ const Wishlist = () => {
   }
 
   const handleDelete = modalData => {
-    fetch(`http://localhost:5000/add-to-wishlist/${modalData._id}`, {
+    fetch(`https://ebooks-server.vercel.app/add-to-wishlist/${modalData._id}`, {
       method: 'DELETE',
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`

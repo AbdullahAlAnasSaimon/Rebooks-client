@@ -34,7 +34,7 @@ const SingleBook = ({ books, setBookData }) => {
         paid: false
       }
 
-      fetch('http://localhost:5000/add-to-wishlist', {
+      fetch('https://ebooks-server.vercel.app/add-to-wishlist', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',

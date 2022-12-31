@@ -10,7 +10,7 @@ const MyBuyers = () => {
   const { data: myBuyers, isLoading, refetch } = useQuery({
     queryKey: ['myBuyer'],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/my-buyers?email=${user?.email}`);
+      const res = await fetch(`https://ebooks-server.vercel.app/my-buyers?email=${user?.email}`);
       const data = await res.json();
       return data;
     }
