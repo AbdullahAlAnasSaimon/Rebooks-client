@@ -1,57 +1,59 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { FaUserCircle } from 'react-icons/fa';
-import {AiFillHeart} from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
 import { MdReport, MdVerified } from 'react-icons/md';
 import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
 import useAdmin from '../../../Hooks/useAdmin';
 import useSeller from '../../../Hooks/useSeller';
+import { useState } from 'react';
 
 const SingleBook = ({ books, setBookData }) => {
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user?.email);
   const [isSeller] = useSeller(user?.email);
+  const [processing, setProcessing] = useState(true);
   const { name, category_name, seller_photo, verified, condition, description, location, original_price, phone_number, photo, posting_time, resell_price, seller_name, year_of_purchase, year_of_use, paid } = books;
 
 
-  const handleAddToWishList = data =>{
+  const handleAddToWishList = data => {
     // console.log(data);
     const confirmation = window.confirm(`Are you sure you want to add ${name} to wishlist`);
-    if(confirmation){
-      const {_id, name, category_name, categoryId, availablity, photo, resell_price, seller_name} = data;
-    const wishListData = {
-      productID: _id,
-      product_name: name,
-      add_to_wishlist: true,
-      category_name,
-      categoryId,
-      availablity,
-      photo,
-      resell_price,
-      seller_name,
-      user_email: user?.email,
-      paid: false
-    }
-    
-    fetch('http://localhost:5000/add-to-wishlist', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        authorization: `bearer ${localStorage.getItem('accessToken')}`
-      },
-      body: JSON.stringify(wishListData)
-    })
-    .then(res => res.json())
-    .then(data => {
-      if(data.acknowledged){
-        toast.success('Added To wishlist Successfully');
+    if (confirmation) {
+      const { _id, name, category_name, categoryId, availablity, photo, resell_price, seller_name } = data;
+      const wishListData = {
+        productID: _id,
+        product_name: name,
+        add_to_wishlist: true,
+        category_name,
+        categoryId,
+        availablity,
+        photo,
+        resell_price,
+        seller_name,
+        user_email: user?.email,
+        paid: false
       }
-      else{
-        toast.error(data.message);
-      }
-    })
+
+      fetch('http://localhost:5000/add-to-wishlist', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          authorization: `bearer ${localStorage.getItem('accessToken')}`
+        },
+        body: JSON.stringify(wishListData)
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.acknowledged) {
+            toast.success('Added To wishlist Successfully');
+          }
+          else {
+            toast.error(data.message);
+          }
+        })
     }
-    else{
+    else {
       return;
     }
   }
@@ -112,8 +114,24 @@ const SingleBook = ({ books, setBookData }) => {
                 <p><strong>Contact No.:</strong> {phone_number}</p>
               </div>
               <div className="card-actions justify-start">
-                {<label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0' disabled={!books?.availablity || isAdmin || isSeller}>{books?.availablity ? 'Book Now' : 'Unavailable'}</label>}
-                <button onClick={() => handleAddToWishList(books)} className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl' disabled={isAdmin || isSeller}><AiFillHeart/></button>
+
+                {/* <button className='btn bg-blue-500 hover:bg-blue-600 text-white border-0 w-full my-5' type="submit" disabled={processing}>{processing ? <>
+                  <svg className="animate-spin -ml-1 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#8d8df0" stroke-width="4"></circle>
+                    <path className="opacity-75" fill="rgb(59, 130, 246)" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                </> : 'Log In'}</button> */}
+
+                {<label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0' disabled={!books?.availablity || isAdmin || isSeller}>   
+                {processing ? <>
+                  <svg className="animate-spin -ml-1 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#8d8df0" stroke-width="4"></circle>
+                    <path className="opacity-75" fill="rgb(59, 130, 246)" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                </> :
+                <span>{books?.availablity ? 'Book Now' : 'Unavailable'}</span>}</label>}
+                
+                <button onClick={() => handleAddToWishList(books)} className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl' disabled={isAdmin || isSeller}><AiFillHeart /></button>
                 <button onClick={() => handleReportItem(books)} className='btn btn-warning' disabled={isAdmin || isSeller}><MdReport className='inline-block mr-1' /> Report</button>
               </div>
             </div>
