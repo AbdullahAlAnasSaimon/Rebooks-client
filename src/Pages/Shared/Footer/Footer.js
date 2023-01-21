@@ -13,9 +13,9 @@ const Footer = () => {
           <Link className="link link-hover" to='/blog'>Blog</Link>
         </div>
         <div>
-          <div className="grid grid-flow-col gap-4">
-            <img src={logo} alt="" className='w-12'/>
-            <h2 className='text-4xl font-bold'>Rebooks</h2>
+          <div className="grid grid-flow-col gap-x-2">
+            <img src={logo} alt="" className='w-10'/>
+            <h2 className='text-3xl font-bold'>ReBooks</h2>
           </div>
         </div>
         <div>
