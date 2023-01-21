@@ -42,6 +42,7 @@ const ShopLayout = () => {
           <div className="drawer-side z-1 md:sticky md:top-[55px] md:max-h-[100vh - 1rem] md:overflow-y-scroll md:inline-block">
             <label htmlFor="category-drawer" className="drawer-overlay"></label>
             <ul className="menu p-4 w-72 bg-base-100 lg:bg-base-100/0 text-base-content">
+            <div className='md:my-1 font-semibold pl-4'>Books Categories</div>
               {/* <!-- Sidebar content here --> */}
               <li><Link className='md:h-[35px] md:my-1' to={`/category`}>All Books</Link></li>
               { !isLoading &&
