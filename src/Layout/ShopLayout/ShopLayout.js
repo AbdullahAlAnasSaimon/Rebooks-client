@@ -31,7 +31,7 @@ const ShopLayout = () => {
           <img src={dashIcon} alt="" className='w-6 h-6'/>
         </label>
       </div>
-        <div className="drawer drawer-mobile h-auto relative md:w-[95%] mx-auto">
+        <div className="drawer drawer-mobile h-auto relative md:w-[95%] mx-auto overflow-visible">
           <input id="category-drawer" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content z-0">
             {/* <!-- Page content here --> */}
@@ -39,7 +39,7 @@ const ShopLayout = () => {
             {/* <label htmlFor="category-drawer" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
 
           </div>
-          <div className="drawer-side z-1 md:sticky md:top-[0rem] md:max-h-[100vh - 1rem] md:overflow-y-scroll md:inline-block">
+          <div className="drawer-side z-1 md:sticky md:top-[55px] md:max-h-[100vh - 1rem] md:overflow-y-scroll md:inline-block">
             <label htmlFor="category-drawer" className="drawer-overlay"></label>
             <ul className="menu p-4 w-72 bg-base-100 lg:bg-base-100/0 text-base-content">
               {/* <!-- Sidebar content here --> */}
