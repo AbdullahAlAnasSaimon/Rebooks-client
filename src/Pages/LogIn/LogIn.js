@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../Context/AuthProvider/AuthPrivider';
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import useTitle from '../../Hooks/useTitle';
 import useToken from '../../Hooks/useToken';
 
