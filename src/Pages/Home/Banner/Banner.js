@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import BannerImg from '../../../images/banner.png'
+import BannerImg from '../../../images/banner.gif';
 
 const Banner = () => {
   return (
-    <div className='bg-blue-100/50'>
+    <div className='bg-white'>
       <div className="hero w-11/12 h-auto lg:h-[550px] mx-auto">
         <div className="hero-content flex-col-reverse lg:flex-row-reverse">
           <div className='w-full md:w-6/12'>
