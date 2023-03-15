@@ -16,9 +16,8 @@ const SingleBook = ({ books, setBookData }) => {
 
 
   const handleAddToWishList = data => {
-    // console.log(data);
     const confirmation = window.confirm(`Are you sure you want to add ${name} to wishlist`);
-    if (confirmation) {
+    if (confirmation && user) {
       const { _id, name, category_name, categoryId, availablity, photo, resell_price, seller_name } = data;
       const wishListData = {
         productID: _id,
@@ -53,7 +52,7 @@ const SingleBook = ({ books, setBookData }) => {
         })
     }
     else {
-      return;
+      return toast.error('Please Login to add to withlist');
     }
   }
 
@@ -121,11 +120,11 @@ const SingleBook = ({ books, setBookData }) => {
                   </svg>
                 </> : 'Log In'}</button> */}
 
-                <label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0' disabled={!books?.availablity || isAdmin || isSeller || isAdminLoading || isSellerLoading}> {(isAdminLoading || isSellerLoading) ? <ButtonLoading/> : <>{books?.availablity ? 'Book Now' : 'Unavailable'}</>} </label>
+                <label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0'> Buy Now </label>
 
-                <button onClick={() => handleAddToWishList(books)} className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl' disabled={isAdmin || isSeller || isAdminLoading || isSellerLoading}> {(isAdminLoading || isSellerLoading) ? <ButtonLoading/> :<AiFillHeart />}</button>
+                <button onClick={() => handleAddToWishList(books)} className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl' ><AiFillHeart /></button>
 
-                <button onClick={() => handleReportItem(books)} className='btn btn-warning' disabled={isAdmin || isSeller || isAdminLoading || isSellerLoading}>{(isAdminLoading || isSellerLoading) ? <ButtonLoading/> : <><MdReport className='inline-block mr-1' /> Report</>}</button>
+                <button onClick={() => handleReportItem(books)} className='btn btn-warning'><MdReport className='inline-block mr-1' /> Report</button>
               </div>
             </div>
             <figure className='w-auto rounded-xl pr-0 md:pr-6'><img className='rounded-lg md:!max-w-[300px] m-5 md:m-0' src={photo} alt="Movie" /></figure>
