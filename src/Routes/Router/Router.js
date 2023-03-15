@@ -51,11 +51,11 @@ export const router = createBrowserRouter([
   },
   {
     path: '/category',
-    element: <PrivateRoute><ShopLayout></ShopLayout></PrivateRoute>,
+    element: <ShopLayout></ShopLayout>,
     children: [
       {
         path: '/category',
-        element: <PrivateRoute><Shop></Shop></PrivateRoute>
+        element: <Shop></Shop>
       },
       {
         path: '/category/:id',
@@ -64,7 +64,7 @@ export const router = createBrowserRouter([
             authorization: `bearer ${localStorage.getItem('accessToken')}`
           }
         }),
-        element: <PrivateRoute><Products></Products></PrivateRoute>
+        element: <Products></Products>
       }
     ]
   },

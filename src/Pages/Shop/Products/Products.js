@@ -16,7 +16,7 @@ const Products = () => {
             <h2 className='text-3xl font-bold text-center my-10'>{products[0]?.category_name}</h2>
             <div className=''>
               {
-                products.map(books => <SingleBook
+                products?.map(books => <SingleBook
                   key={books._id}
                   books={books}
                   setBookData={setBookData}

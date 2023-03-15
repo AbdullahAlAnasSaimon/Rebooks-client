@@ -31,7 +31,7 @@ const Shop = () => {
     <div>
       <div className=''>
         {
-          allBooks.map(books => <SingleBook
+          allBooks?.map(books => <SingleBook
             key={books._id}
             books={books}
             setBookData={setBookData}
