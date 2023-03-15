@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AiFillHeart } from 'react-icons/ai';
-import {  FaUserCircle } from 'react-icons/fa';
-import {  MdReport, MdVerified } from 'react-icons/md';
+import { FaUserCircle } from 'react-icons/fa';
+import { MdReport, MdVerified } from 'react-icons/md';
 import { AuthContext } from '../../../Context/AuthProvider/AuthPrivider';
 import useAdmin from '../../../Hooks/useAdmin';
 import useSeller from '../../../Hooks/useSeller';
@@ -13,67 +13,67 @@ const AdvertiseBook = ({ books, setBookData }) => {
   const [isSeller] = useSeller(user?.email);
   const { name, category_name, seller_photo, verified, condition, description, location, original_price, phone_number, photo, posting_time, resell_price, seller_name, year_of_purchase, year_of_use, paid } = books;
 
-  const handleAddToWishList = data =>{
+  const handleAddToWishList = data => {
     // console.log(data);
     const confirmation = window.confirm(`Are you sure you want to add ${name} to wishlist`);
-    if(confirmation){
-      const {_id, name, category_name, categoryId, availablity, photo, resell_price, seller_name} = data;
-    const wishListData = {
-      productID: _id,
-      product_name: name,
-      add_to_wishlist: true,
-      category_name,
-      categoryId,
-      availablity,
-      photo,
-      resell_price,
-      seller_name,
-      user_email: user?.email,
-      paid: false
-    }
-    
-    fetch('https://ebooks-server.vercel.app/add-to-wishlist', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        authorization: `bearer ${localStorage.getItem('accessToken')}`
-      },
-      body: JSON.stringify(wishListData)
-    })
-    .then(res => res.json())
-    .then(data => {
-      if(data.acknowledged){
-        toast.success('Added To wishlist Successfully');
+    if (confirmation) {
+      const { _id, name, category_name, categoryId, availablity, photo, resell_price, seller_name } = data;
+      const wishListData = {
+        productID: _id,
+        product_name: name,
+        add_to_wishlist: true,
+        category_name,
+        categoryId,
+        availablity,
+        photo,
+        resell_price,
+        seller_name,
+        user_email: user?.email,
+        paid: false
       }
-      else{
-        toast.error(data.message);
-      }
-    })
+
+      fetch('https://ebooks-server.vercel.app/add-to-wishlist', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          authorization: `bearer ${localStorage.getItem('accessToken')}`
+        },
+        body: JSON.stringify(wishListData)
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.acknowledged) {
+            toast.success('Added To wishlist Successfully');
+          }
+          else {
+            toast.error(data.message);
+          }
+        })
     }
-    else{
+    else {
       return;
     }
   }
 
   const handleReportItem = books => {
-    if(user){
+    if (user) {
       const confirmReport = window.confirm(`Are You sure you want to report ${books?.name}?`);
-    if(confirmReport){
-      fetch(`https://ebooks-server.vercel.app/reported-product/${books?._id}`, {
-        method: 'PUT',
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data.modifiedCount > 0) {
-            toast.success('Reported Successfully');
-          }
+      if (confirmReport) {
+        fetch(`https://ebooks-server.vercel.app/reported-product/${books?._id}`, {
+          method: 'PUT',
         })
+          .then(res => res.json())
+          .then(data => {
+            if (data.modifiedCount > 0) {
+              toast.success('Reported Successfully');
+            }
+          })
+      }
+      else {
+        return;
+      }
     }
-    else{
-      return;
-    }
-    }
-    else{
+    else {
       return toast.error('Please Login to Report');
     }
   }
@@ -103,7 +103,7 @@ const AdvertiseBook = ({ books, setBookData }) => {
 
               <p>{description.slice(0, 200) + '...'}</p>
               <div className='text-[15px] mb-2'>
-              <p><strong>Category:</strong> <span className='text-[14px] bg-gray-200 inline-block px-2 rounded-full'>{category_name}</span></p>
+                <p><strong>Category:</strong> <span className='text-[14px] bg-gray-200 inline-block px-2 rounded-full'>{category_name}</span></p>
                 <p><strong>Condition:</strong> {condition}</p>
                 <p><strong>Location:</strong> {location}</p>
                 <p><strong>Purchase:</strong> {year_of_purchase}</p>
@@ -111,9 +111,11 @@ const AdvertiseBook = ({ books, setBookData }) => {
                 <p><strong>Contact No.:</strong> {phone_number}</p>
               </div>
               <div className="card-actions justify-start">
-                {<label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0' disabled={!books?.availablity || isAdmin || isSeller}>{books?.availablity ? 'Book Now' : 'Unavailable'}</label>}
-                <button onClick={() => handleAddToWishList(books)} className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl' disabled={isAdmin || isSeller}><AiFillHeart/></button>
-                <button onClick={() => handleReportItem(books)} className='btn btn-warning' disabled={isAdmin || isSeller}><MdReport className='inline-block mr-1'/> Report</button>
+                <label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-600 hover:bg-blue-500 text-white border-0 btn-xs rounded-full h-[35px] px-5'> Buy Now </label>
+
+                <button onClick={() => handleAddToWishList(books)} className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl btn-xs rounded-full h-[35px]' ><AiFillHeart /></button>
+
+                <button onClick={() => handleReportItem(books)} className='btn btn-warning btn-xs rounded-full h-[35px] px-5'><MdReport className='inline-block mr-1' /> Report</button>
               </div>
             </div>
             <figure className='w-auto rounded-xl pr-0 md:pr-6'><img className='rounded-lg md:!max-w-[300px] m-5 md:m-0' src={photo} alt="Movie" /></figure>
