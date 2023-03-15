@@ -120,11 +120,11 @@ const SingleBook = ({ books, setBookData }) => {
                   </svg>
                 </> : 'Log In'}</button> */}
 
-                <label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0'> Buy Now </label>
+                <label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0 btn-xs rounded-full h-[35px] px-5'> Buy Now </label>
 
-                <button onClick={() => handleAddToWishList(books)} className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl' ><AiFillHeart /></button>
+                <button onClick={() => handleAddToWishList(books)} className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl btn-xs rounded-full h-[35px]' ><AiFillHeart /></button>
 
-                <button onClick={() => handleReportItem(books)} className='btn btn-warning'><MdReport className='inline-block mr-1' /> Report</button>
+                <button onClick={() => handleReportItem(books)} className='btn btn-warning btn-xs rounded-full h-[35px] px-5'><MdReport className='inline-block mr-1' /> Report</button>
               </div>
             </div>
             <figure className='w-auto rounded-xl pr-0 md:pr-6'><img className='rounded-lg md:!max-w-[300px] m-5 md:m-0' src={photo} alt="Movie" /></figure>
