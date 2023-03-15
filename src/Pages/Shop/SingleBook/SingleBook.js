@@ -120,7 +120,7 @@ const SingleBook = ({ books, setBookData }) => {
                   </svg>
                 </> : 'Log In'}</button> */}
 
-                <label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-500 hover:bg-blue-600 text-white border-0 btn-xs rounded-full h-[35px] px-5'> Buy Now </label>
+                <label onClick={() => setBookData(books)} htmlFor="booking-modal" className='btn bg-blue-600 hover:bg-blue-500 text-white border-0 btn-xs rounded-full h-[35px] px-5'> Buy Now </label>
 
                 <button onClick={() => handleAddToWishList(books)} className='btn bg-red-500 hover:bg-red-600 text-white border-0 text-xl btn-xs rounded-full h-[35px]' ><AiFillHeart /></button>
 

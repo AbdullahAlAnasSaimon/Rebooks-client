@@ -34,7 +34,7 @@ const Header = () => {
 
   return (
     <div className='bg-blue-400/60 backdrop-blur-lg border-b-2 sticky top-0 w-full z-[9999] duration-300 border-blue-200' id='navbar'>
-      <div className="navbar w-full md:w-11/12 mx-auto md:min-h-[40px] p-1">
+      <div className="navbar w-full md:w-11/12 mx-auto md:min-h-[40px] p-2">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost btn-circle lg:hidden">
@@ -81,9 +81,9 @@ const Header = () => {
 
           {user?.uid ?
             <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  {user?.photoURL ? <img src={user?.photoURL} alt='' /> : <FaUserCircle className='text-[40px] text-gray-700' />}
+              <label tabIndex={0} className="btn-ghost btn-circle avatar w-[30px] h-[30px] flex justify-center">
+                <div className="w-8 rounded-full">
+                  {user?.photoURL ? <img src={user?.photoURL} alt='' /> : <FaUserCircle className='text-[28px] text-gray-700' />}
                 </div>
               </label>
               <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
