@@ -92,7 +92,7 @@ const Header = () => {
               </ul>
             </div>
             :
-            <NavLink to='/login' className="btn btn-sm"> Log In</NavLink>
+            <NavLink to='/login' className="bg-gray-700 hover:bg-gray-800 duration-300 px-4 py-2 text-white rounded-md text-sm"> Log In</NavLink>
           }
         </div>
       </div>
