@@ -49,7 +49,7 @@ const SoldProducts = () => {
       <div>
         {
           soldItems.length > 0 ? <div className="overflow-x-auto w-full">
-          <table className="table w-full">
+          <table className="table table-compact w-full">
             {/* <!-- head --> */}
             <thead>
               <tr>

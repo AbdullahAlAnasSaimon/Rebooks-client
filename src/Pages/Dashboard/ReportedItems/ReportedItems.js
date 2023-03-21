@@ -54,7 +54,7 @@ const ReportedItems = () => {
       <h2 className='text-2xl font-bold text-center md:text-left my-5'>Reported Items</h2>
       <div>
         <div className="overflow-x-auto">
-          <table className="table w-full">
+          <table className="table table-compact w-full">
             <thead>
               <tr>
                 <th></th>
