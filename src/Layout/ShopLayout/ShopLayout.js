@@ -9,8 +9,6 @@ import dashIcon from '../../images/icons/dashboard-5481.svg';
 const ShopLayout = () => {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeCategory, setActiveCategory] = useState("");
-
   const location = useLocation()
   
   
@@ -26,7 +24,6 @@ const ShopLayout = () => {
     return <Loading/>
   }
   
-  console.log(activeCategory);
 
 
   return (
