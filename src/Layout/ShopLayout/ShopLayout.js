@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import Footer from '../../Pages/Shared/Footer/Footer';
 import Header from '../../Pages/Shared/Header/Header';
 import Loading from '../../Pages/Shared/Loading/Loading';
@@ -9,6 +9,10 @@ import dashIcon from '../../images/icons/dashboard-5481.svg';
 const ShopLayout = () => {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState("");
+
+  const location = useLocation()
+  
   
   useEffect(() => {
     axios.get('https://ebooks-server.vercel.app/category')
@@ -22,6 +26,8 @@ const ShopLayout = () => {
     return <Loading/>
   }
   
+  console.log(activeCategory);
+
 
   return (
       <div>
@@ -44,10 +50,10 @@ const ShopLayout = () => {
             <ul className="menu p-4 w-72 bg-base-100 lg:bg-base-100/0 text-base-content">
             <div className='md:my-1 font-semibold pl-4'>Books Categories</div>
               {/* <!-- Sidebar content here --> */}
-              <li><Link className='md:h-[35px] md:my-1' to={`/category`}>All Books</Link></li>
+              <li><Link className={`md:h-[35px] md:my-1 ${location.pathname === "/category" && "bg-[#3c3d3e] text-white"}`} to={`/category`}>All Books</Link></li>
               { !isLoading &&
                 categories.map(category => <li key={category._id}><NavLink className='md:h-[35px] md:my-1' to={`/category/${category?._id}`}>{category?.category_name}</NavLink></li>)
-              }
+              } 
             </ul>
           </div>
         </div>
